@@ -1,0 +1,3768 @@
+<!DOCTYPE html>
+<!-- saved from url=(0113)https://www.photophysics.com/media/gzujcfx5/chirascan_operating_principles_responsive_final_dpibased_resized.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Chirascan Operating Principles</title>
+
+<style>
+html, body
+{
+    height: 100%;
+    margin: 0;
+    padding: 0px;
+    overflow: hidden;
+}
+
+#wrapper{
+    position:relative;
+    width:100%;
+    height:100%;
+}
+
+#controlscontainer{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	font-size: 10pt;
+	font-family: Arial, Helvetica, sans-serif;
+	margin-bottom: 10px;
+}
+
+#rainbowcanvas, #lamplightcanvas
+{
+	position:absolute;
+	top:0px;
+	left:0px;
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0);
+}
+
+#canvas
+{
+	position:absolute; top:0px; left:0px;
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0);
+}
+
+#graphcanvas_div {
+	position: relative;
+	width: 100%;
+	padding-top: 100%;
+}
+
+#graphcanvas
+{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background: rgba(255, 255, 255, 0);
+}
+
+#beamscanvas, #opticscanvas, #beams2canvas, #magnifiercanvas, #particlescanvas, #shadecanvas, #focuscanvas, #rainbow2canvas
+{
+	pointer-events: none;
+	position:absolute; top:0px; left:0px;
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0);
+}
+
+#buttoncontainer
+{
+	text-align: center;
+}
+
+.arrow
+{
+	font-size: 18pt;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #9e247b;
+}
+
+.grid-item
+{
+	padding: 10px;
+	text-align: left;
+}
+
+.button
+{
+	display: inline-block;
+	margin: 4px 2px;
+	font-family: Arial;
+	font-size: 12px;
+	text-align: center;
+	text-decoration: none;
+	background-color: #9e247b;
+	color: white;
+	border: black;
+	border-radius: 5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color:#333;
+	cursor: pointer;
+	width: 37px;
+	height: 28px;
+}
+
+.button:hover
+{
+	color: white;
+	background-color: #d64dae;
+}
+
+.button:active
+{
+	color: white;
+	background-color: #4f123d;
+}
+
+.button:disabled,
+button[disabled]
+{
+	cursor: auto;
+	border-color: #dedede;
+	background-color: #efefef;
+	color: white;
+}
+
+input[type="range"]
+{
+	-webkit-appearance: none;
+	appearance: none;
+	width: 100%;
+	cursor: pointer;
+	outline: none;
+	height: 20px;
+}
+
+input[type="range"]::-moz-range-thumb {
+	width: 14px;
+	height: 18px;
+	background: rgb(230, 230, 230);
+	background-color: #fff;
+	border-radius: 3px;
+	border: 1px solid #d9d9d9;
+	cursor: pointer;
+}
+
+input[type="range"]::-moz-range-track {
+	height: 10px;
+	background: #fafafa;
+	border: 1px solid #d3d3d3;
+	border-radius: 4px;
+}
+
+/* Default Controls Layout */
+input[type="range"]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 14px;
+	height: 18px;
+	background: rgb(230, 230, 230);
+	background-color: #fff;
+	border-radius: 3px;
+	border: 1px solid #d9d9d9;
+	cursor: pointer;
+	margin: -5px;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+	height: 10px;
+	background: #fafafa;
+	border: 1px solid #d3d3d3;
+	border-radius: 4px;
+}
+
+.slidercontainer {
+	margin-bottom: 10px;
+}
+
+.sliderLabel {
+	font-size:10pt;
+}
+
+.checkbox {
+	transform: scale(1);
+	margin-top: 0px;
+	accent-color: #9e247b;
+}
+
+.checkboxLabel {
+	font-size:10pt;
+}
+
+#textcontainer
+{
+	font-size: 10pt;
+	font-family: Arial, Helvetica, sans-serif;
+	margin-top: -5px;
+	line-height: 1.5;
+	overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Default Grid Layout */
+.grid-container {
+    display: grid;
+    grid-template-columns: auto 15% 20%;
+    gap: 0px;
+    width: 100%;
+}
+
+#canvascontainer{
+    position:relative;
+    width:98%;
+    height:100%;
+}
+
+#tourcontainer
+{
+	display: grid;
+	grid-template-columns: 10% 80%;
+	gap: 10%;
+	width: 90%;
+}
+
+/* Tablets (Portrait) and Smaller */
+@media screen and (max-width: 1024px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+    }
+
+    #canvascontainer {
+        width: 80%;
+        height: 40vh; /* Reduce height dynamically */
+        margin: auto;
+    }
+
+    #infocontainer, #tourcontainer {
+        width: 90%;
+        margin: auto;
+        height: auto;
+        max-height: 30vh; /* Limit height to avoid excessive stretching */
+    }
+    
+	#textcontainer
+	{
+		height: auto;
+		overflow-y: auto; /* Enable vertical scrolling */
+		max-height: 30vh; /* Limit height to avoid excessive stretching */
+	}
+}
+
+@media screen and (min-resolution: 192dpi) {
+	input[type="range"]::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		appearance: none;
+		width: 42px;
+		height: 54px;
+		background: rgb(230, 230, 230);
+		background-color: #fff;
+		border-radius: 9px;
+		border: 1px solid #d9d9d9;
+		cursor: pointer;
+		margin: -15px;
+	}
+    
+	input[type="range"]::-webkit-slider-runnable-track {
+		height: 30px;
+		background: #fafafa;
+		border: 3px solid #d3d3d3;
+		border-radius: 12px;
+	}
+    
+	.slidercontainer {
+		margin-bottom: 30px;
+	}
+    
+	.sliderLabel {
+		font-size:30pt;
+	}
+	
+	.checkbox {
+		transform: scale(3);
+		margin-top: 30px;
+		margin-left: 30px;
+		margin-right: 30px;
+	}
+	
+	.checkboxLabel {
+		font-size:30pt;
+	}
+	
+	.button {
+		width: 100px;
+		height: 100px;
+		font-size: 42px;
+	}
+	
+	#tourstepVal {
+		font-size: 42px;
+	}
+	
+	#infocontainer {
+		overflow-y: auto; /* Enable vertical scrolling */
+		max-height: 25vh; /* Limit height to avoid excessive stretching */
+	}
+	
+	#tourcontainer {
+		display: grid;
+		grid-template-columns: 15% auto;
+		gap: 10%;
+		margin: auto;
+		height: auto;
+		max-height: 25vh; /* Limit height to avoid excessive stretching */
+	}
+	
+	#buttoncontainer {
+		width: auto;
+	}
+	
+	#textcontainer
+	{
+		font-size: 30pt;
+		line-height: 1.5;
+		overflow-y: auto; /* Enable vertical scrolling */
+		max-height: 25vh; /* Limit height to avoid excessive stretching */
+	}
+}
+
+
+
+/* Phones (Landscape) */
+@media screen and (max-resolution: 384dpi) and (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+    }
+
+    #canvascontainer {
+        width: 70%;
+        height: 50vh; /* Reduce height for usability */
+        margin: auto;
+    }
+
+    #infocontainer, #tourcontainer {
+        width: 100%;
+        font-size: 14px;
+        padding: 15px;
+        height: auto;
+        max-height: 35vh; /* Prevent overflow */
+        overflow-y: auto; /* Enable scrolling */
+        text-align: center;
+    }
+}
+
+/* Phones (Portrait) */
+@media screen and (max-resolution: 240dpi) and (max-width: 480px) {
+    .grid-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #canvascontainer {
+        width: 100%;
+        height: 40vh; /* Smaller on mobile */
+        margin-bottom: 15px;
+    }
+
+     #infocontainer, #tourcontainer {
+        width: 100%;
+        font-size: 16px;
+        padding: 15px;
+        height: auto;
+        max-height: 30vh; /* Prevent overflow */
+        overflow-y: auto; /* Enable scrolling */
+        text-align: center;
+    }
+
+    #tourcontainer {
+        order: 2; /* Ensure stacking order */
+    }
+
+    #controlscontainer {
+        font-size: 12pt;
+    }
+
+    .button {
+        width: 50px;
+        height: 35px;
+        font-size: 14px;
+    }
+
+    input[type="range"] {
+        width: 100%;
+        height: 30px;
+    }
+}
+
+</style>
+
+</head>
+<body>
+
+<!-- AD -->
+
+<div id="wrapper" class="grid-container">
+	<div id="canvascontainer" onmousemove="getCursor(event)" class="grid-item">
+		<canvas id="lamplightcanvas" width="937" height="740"></canvas>
+		<canvas id="rainbowcanvas" width="937" height="740"></canvas>
+		<canvas id="canvas" width="937" height="740"></canvas>
+		<canvas id="rainbow2canvas" width="937" height="740"></canvas>
+		<canvas id="beamscanvas" width="937" height="740"></canvas>
+		<canvas id="particlescanvas" width="937" height="740"></canvas>
+		<canvas id="opticscanvas" width="937" height="740"></canvas>
+		<canvas id="shadecanvas" width="937" height="740"></canvas>
+		<canvas id="focuscanvas" width="937" height="740"></canvas>
+		<canvas id="beams2canvas" width="937" height="740"></canvas>
+		<canvas id="magnifiercanvas" width="937" height="740"></canvas>
+	</div>
+
+	<div id="infocontainer" class="grid-item">
+		<div id="controlscontainer">
+		  <!--<div>Wave Yaw:<input type="range" min="0" max="85" value="45" class="slider" id="yawSlider"></div>
+		  <span id="debug"></span>-->
+		  <div class="slidercontainer"><span class="sliderLabel">Wavelength: </span><span id="WLval" class="sliderLabel">190</span><span class="sliderLabel"> nm</span><input type="range" min="163" max="1150" value="190" class="slider" id="wlSlider"></div>
+		  <div class="slidercontainer"><span class="sliderLabel">Slit width</span><input type="range" min="0" max="10" value="5" id="gapSlider"></div>
+		  <div id="animationControls_div" style="display:none">
+			  <div class="sliderLabel">Animation speed:<br></div>
+			  <div class="slidercontainer"><span class="sliderLabel" id="speedFactorVal">5</span><span class="sliderLabel"> * 10<sup>-11</sup> Speed of Light</span><input type="range" class="slider" min="1" max="10" value="5" id="speedSlider"></div>
+			  <div class="slidercontainer"><span class="sliderLabel" id="pemFactorVal">5</span><span class="sliderLabel"> * 10<sup>-7</sup> Frequency of PEM (50 kHz)</span><input class="slider" type="range" min="1" max="10" value="5" id="pemSlider"></div>
+		  </div>
+		  <div><input type="checkbox" class="checkbox" id="purgeCheckbox"><label class="checkboxLabel">Purging</label><span id="purgeArrow" class="arrow" style="visibility:hidden"> ⬅</span></div>
+		  <div><input type="checkbox" class="checkbox" id="lampCheckbox" disabled="disabled"><label class="checkboxLabel">Lamp</label><span id="lampArrow" class="arrow" style="visibility:hidden"> ⬅</span></div>
+		  <div><input type="checkbox" class="checkbox" id="shutterCheckbox"><label class="checkboxLabel">Shutter</label><span id="shutterArrow" class="arrow" style="visibility:hidden"> ⬅</span></div>
+		  <div><input type="checkbox" class="checkbox" id="sampleCheckbox"><label class="checkboxLabel">Sample</label><span id="sampleArrow" class="arrow" style="visibility:hidden"> ⬅</span></div>
+		  <div><input type="checkbox" class="checkbox" id="magnifierCheckbox"><label class="checkboxLabel">Magnifying glass</label><span id="glassArrow" class="arrow" style="visibility:hidden"> ⬅</span></div>
+		</div>
+		<div id="graphcanvas_div" style="display:none">
+			<canvas id="graphcanvas" width="0" height="0"></canvas>
+		</div>
+	</div>
+
+	<div id="tourcontainer" class="grid-item">
+		<div id="buttoncontainer">
+			<button id="restartbutton" class="button" onclick="tourRestart()" disabled="">⤒</button>
+			<button id="prevbutton" class="button" onclick="tourPrev()" disabled="disabled">↑</button>
+			<span id="tourstepVal"></span>
+			<button id="nextbutton" class="button" onclick="tourNext()">↓</button>
+			<button id="reloadbutton" class="button" onclick="tourReload()" style="visibility: hidden;">⟳</button>
+		</div>
+		<div id="textcontainer">
+			<span id="tourtextVal"><p align="justify" style="padding: 0 0 5px"><b>Care for a little tour?</b></p><p align="justify" style="padding: 0 0 5px">Use the arrow buttons to navigate through the tour and learn step-by-step how a Chirascan CD spectrometer works!</p><p align="justify" style="padding: 0 0 5px">While this schematic outlines a Chirascan system, most of the operating principles shown hold true for other CD spectrometers as well!</p><p align="justify" style="padding: 0 0 5px">Zoom in or out using the mousewheel, and pan by left-clicking and dragging.</p></span>
+		</div>
+	</div>
+</div>
+
+<object id="nitrogenVolumeSVG" data="./Nitrogenvolume_plain.svg" type="image/svg+xml"></object>
+<script>
+	const components = ["anms", "lamp", "focusingmirror", "mirrors", "baffles", "lenses", "pem", "detector"];
+// Define positions of optics
+var lampX, lampY;
+var lampMirrorX, lampMirrorY;
+var shutterX, shutterY;
+var shutterEdgeX, shutterEdgeY;
+var slit1X, slit1Y;
+var mirror1X, mirror1Y;
+var prism1X, prism1Y;
+var mirror2X, mirror2Y;
+var slit2X, slit2Y;
+var mirror3X, mirror3Y;
+var prism2X, prism2Y;
+var mirror4X, mirror4Y;
+var slit3X, slit3Y;
+var detectorX, detectorY;
+const pxPerMM = 3.779528; //Scale in pixels per mm; defined in SVG document properties
+const PEMfrequency = 50000; // Frequency of PEM in kHz
+const speedOfLightMperS = 299792458;
+const red = 740;
+const violet = 380;
+const deepUV = 100;
+const maxAmp = 4;
+const particlescanvas = document.getElementById("particlescanvas");
+const lamplightcanvas = document.getElementById("lamplightcanvas");
+const rainbowcanvas = document.getElementById("rainbowcanvas");
+const rainbow2canvas = document.getElementById("rainbow2canvas");
+const canvas = document.getElementById("canvas");
+const beamscanvas = document.getElementById("beamscanvas");
+const beams2canvas = document.getElementById("beams2canvas");
+const shadecanvas = document.getElementById("shadecanvas");
+const focuscanvas = document.getElementById("focuscanvas");
+const opticscanvas = document.getElementById("opticscanvas");
+const magnifiercanvas = document.getElementById("magnifiercanvas");
+const graphcanvas = document.getElementById("graphcanvas");
+//const debug = document.getElementById("debug");
+const pctx = particlescanvas.getContext("2d");
+const lctx = lamplightcanvas.getContext("2d");
+const rctx = rainbowcanvas.getContext("2d");
+const r2ctx = rainbow2canvas.getContext("2d");
+const ctx = canvas.getContext("2d");
+const bctx = beamscanvas.getContext("2d");
+const b2ctx = beams2canvas.getContext("2d");
+const sctx = shadecanvas.getContext("2d");
+const fctx = focuscanvas.getContext("2d");
+const octx = opticscanvas.getContext("2d");
+const mctx = magnifiercanvas.getContext("2d");
+const gctx = graphcanvas.getContext("2d");
+var graphcanvasWidth, graphcanvasHeight;
+const svgPageWidth = 391.843;
+const svgPageHeight = 382.678;
+const svgPlotWidth = 343.323;
+const svgPlotHeight = 343.323;
+const svgPlotX = 47.855;
+const svgPlotY = 0.667;
+const minWL = parseInt(document.getElementById("wlSlider").min);
+const maxWL = parseInt(document.getElementById("wlSlider").max);
+const magnifierRadius = 120;
+var focus, newFocusZoom;
+var focussing = false;
+var zoomStep = 0;
+var newFocusX = 0;
+var newFocusY = 0; 
+var magnifyingGlassOffset = 150;
+var WLval = document.getElementById("WLval");
+
+const cameraMoveFactor = 2; // Affects how quickly movement is done for transitions
+const cameraZoomFactor = 2; // Affects how quickly zoom is done for transitions
+
+var speedFactorVal = document.getElementById("speedFactorVal");
+var speedFactor = document.getElementById("speedSlider").defaultValue;
+var speedRelLightSpeed = speedFactor / (10 ** 11);
+var speedMMperS = (speedOfLightMperS * 1000) * speedRelLightSpeed;
+var speedPXperS = speedMMperS * pxPerMM;
+
+var pemFactorVal = document.getElementById("pemFactorVal");
+var pemFactor = document.getElementById("pemSlider").defaultValue;
+var speedRelPEMSpeed = pemFactor / (10 ** 7);
+var pemFrequency = PEMfrequency * speedRelPEMSpeed;
+var timePerPemCycle = 1 / pemFrequency;
+
+var windowWidth = document.getElementById("canvascontainer").offsetWidth;
+var windowHeight = document.getElementById("canvascontainer").offsetHeight;
+var mainSVG = new Image();
+var mainSVGwidth = 0;
+var mainSVGheight = 0;
+var lamplightSVG = new Image();
+var wallsSVG = new Image();
+var lampSVG = new Image();
+var focusingmirrorSVG = new Image();
+var mirrorsSVG = new Image();
+var bafflesSVG = new Image();
+var detectorSVG = new Image();
+var anmsSVG = new Image();
+var lensesSVG = new Image();
+var pemSVG = new Image();
+var segmentResolution = 1;
+var segmentResolution = 1;
+var maxPEMshift = 0.25;
+var PEMmod = 0;
+var detectorHighlighted = 0;
+
+var particles;
+
+var HTvals = [466.187, 434.586, 409.744, 397.522, 393.25, 393.25, 393.906, 396.561, 400.375, 405.045, 410.645, 416.656, 422.44, 427.887, 434.57, 439.453, 443.146, 446.762, 450.317, 453.43, 456.543, 459.732, 461.716, 463.974, 465.195, 467.392, 471.329, 470.688, 472.107, 473.74, 473.74, 475.052, 475.525, 477.234, 478.882, 478.882, 479.385, 479.385, 479.385, 479.385, 478.851, 478.851, 478.851, 477.585, 477.585, 477.585, 477.585, 475.754, 474.655, 473.465, 472.29, 469.009, 469.009, 467.59, 465.332, 465.332, 465.332, 468.109, 466.202, 465.179, 465.683, 466.232, 468.369, 468.369, 468.369, 469.543, 469.543, 472.153, 472.153, 472.855, 474.335, 474.335, 475.647, 475.647, 477.6, 477.6, 478.21, 478.958, 481.628, 480.667, 481.4, 482.681, 486.145, 486.145, 487.396, 488.541, 489.38, 491.119, 494.995, 493.805, 494.766, 494.766, 498.077, 495.605, 495.605, 495.605, 495.605, 495.605, 495.605, 494.98, 494.98, 493.881, 493.332, 491.745, 491.745, 490.479, 489.273, 487.579, 485.016, 485.016, 483.795, 479.828, 479.828, 479.279, 477.432, 475.372, 475.372, 473.679, 471.634, 471.634, 469.986, 469.986, 469.482, 468.292, 466.904, 466.904, 466.904, 466.904, 466.4, 466.4, 465.851, 465.851, 465.851, 466.507, 465.424, 465.424, 465.958, 465.958, 465.958, 465.958, 465.958, 465.958, 465.393, 465.393, 466.125, 466.37, 466.736, 466.736, 466.736, 467.987, 467.133, 467.667, 467.667, 468.262, 468.628, 471.329, 468.43, 469.086, 471.13, 469.208, 469.772, 469.772, 470.337, 470.337, 471.13, 471.13, 471.664, 471.664, 471.664, 472.549, 473.48, 473.48, 473.48, 474.106, 474.625, 475.143, 476.44, 477.173, 479.904, 479.172, 479.172, 479.797, 480.453, 481.567, 481.567, 482.04, 482.04, 482.04, 480.698, 480.698, 480.698, 480.698, 480.148, 479.034, 479.034, 479.034, 478.485, 475.388, 475.388, 474.319, 472.366, 472.366, 470.596, 470.596, 470.596, 468.689, 468.689, 468.689, 467.499, 466.354, 464.813, 463.257, 463.257, 461.945, 459.885, 459.885, 457.581, 456.131, 456.131, 456.711, 457.886, 458.679, 458.679, 458.679, 458.679, 458.679, 456.909, 456.909, 456.909, 456.345, 455.048, 455.048, 455.048, 455.612, 456.055, 456.055, 456.055, 456.055, 455.566, 453.186, 451.874, 454.147, 455.597, 456.36, 456.36, 456.863, 456.863, 456.863, 456.863, 457.504, 457.504, 458.679, 458.679, 456.955, 456.421, 456.421, 454.651, 454.651, 452.927, 452.927, 457.458, 455.887, 455.887, 455.887, 458.771, 456.665, 456.665, 456.665, 456.665, 451.248, 439.301, 447.189, 447.189, 450.195, 453.705, 453.705, 452.606, 449.982, 449.982, 448.471, 448.471, 447.632, 442.871, 439.545, 441.544, 444.26, 442.673, 423.981, 416.992, 427.231, 437.302, 443.008, 444.412, 431.03, 444.092, 452.652, 457.87, 457.87, 457.87, 457.138, 452.85, 446.472, 447.693, 449.326, 452.255, 456.039, 458.389, 459.778, 459.778, 459.778, 459.778, 453.552, 449.097, 452.179, 457.169, 460.815, 464.691, 464.691, 466.843, 466.843, 468.613, 467.194, 468.521, 466.583, 468.704, 468.704, 470.703, 469.437, 470.978, 469.864, 470.474, 470.474, 472.717, 470.413, 472.519, 471.649, 472.198, 472.9, 473.145, 475.555, 473.251, 473.251, 473.175, 473.892, 474.075, 474.899, 474.899, 474.899, 474.899, 476.135, 476.639, 476.639, 476.822, 477.142, 478.073, 478.561, 478.561, 479.095, 479.095, 480.148, 480.148, 480.148, 480.377, 479.828, 481.216, 480.103, 481.247, 481.369, 481.369, 482.04, 482.04, 483.032, 483.032, 483.032, 488.129, 484.818, 486.221, 486.221, 486.221, 487.411, 487.411, 487.411, 487.411, 487.411, 488.373, 490.891, 488.373, 488.373, 488.373, 488.373, 490.128, 493.912, 491.013, 491.013, 494.522, 493.179, 493.713, 492.447, 493.073, 493.073, 493.073, 493.073, 493.073, 493.073, 499.191, 495.834, 496.826, 497.589, 497.589, 498.749, 497.94, 498.947, 498.947, 500.824, 502.029, 502.029, 503.784, 502.716, 504.898, 503.281, 503.83, 504.608, 505.142, 505.783, 505.783, 506.836, 505.524, 506.21, 507.126, 508.499, 506.927, 506.927, 506.927, 506.927, 508.026, 506.271, 506.271, 506.271, 506.958, 507.355, 507.355, 507.889, 507.889, 507.889, 508.606, 508.606, 510.696, 510.696, 512.268, 512.268, 512.268, 512.787, 512.787, 513.58, 514.13, 514.587, 515.564, 516.129, 517.883, 517.868, 517.868, 517.868, 517.868, 517.273, 517.273, 517.273, 517.273, 517.273, 517.273, 518.372, 519.44, 521.011, 522.644, 523.483, 524.582, 524.582, 527.008, 527.008, 527.008, 528.687, 528.931, 528.366, 528.366, 527.863, 527.863, 527.313, 527.313, 527.817, 527.817, 528.259, 528.259, 528.839, 528.839, 529.556, 529.556, 529.556, 531.433, 531.433, 531.433, 531.433, 530.258, 530.258, 525.269, 522.903, 522.903, 525.558, 526.764, 526.138, 526.138, 526.138, 529.221, 529.221, 533.981, 533.981, 538.239, 542.847, 544.724, 547.821, 547.821, 550.217, 550.888, 553.07, 555.954, 554.764, 554.764, 554.245, 554.245, 552.856, 548.401, 546.86, 542.45, 541.87, 542.496, 540.146, 540.146, 546.539, 546.188, 549.377, 556.931, 556.931, 561.89, 564.209, 565.659, 565.659, 565.659, 565.659, 565.125, 562.256, 557.861, 554.688, 554.688, 548.309, 543.93, 542.984, 548.309, 556.854, 563.614, 564.453, 564.392, 563.171, 560.501, 560.501, 560.501, 563.034, 564.133, 565.735, 567.78, 567.139, 567.139, 567.139, 567.139, 568.359, 569.153, 569.489, 571.243, 571.762, 571.762, 571.091, 571.091, 568.924, 566.925, 561.218, 547.638, 522.858, 503.601, 519.287, 546.768, 567.627, 576.553, 578.064, 581.924, 585.999, 586.563, 589.249, 593.018, 595.535, 597.519, 601.059, 601.318, 601.974, 601.974, 601.974, 601.974, 601.974, 602.493, 602.493, 597.534, 592.194, 581.741, 576.859, 580.276, 589.569, 597.87, 600.037, 597.58, 596.634, 586.685, 585.8, 587.021, 588.791, 593.567, 600.616, 602.676, 605.362, 607.529, 607.529, 605.103, 603.546, 599.991, 598.938, 598.938, 598.938, 598.373, 596.024, 593.033, 585.266, 579.193, 570.877, 564.636, 532.196, 500.9, 435.745, 381.073, 396.194, 402.069, 443.863, 438.461, 430.862, 464.02, 504.868, 533.035, 532.196, 517.258, 482.727, 472.702, 499.313, 540.604, 568.176, 573.059, 567.856, 531.601, 554.901, 589.905, 613.739, 627.487, 632.599, 636.993, 641.815, 644.592, 644.592, 644.897, 644.897, 644.897, 642.258, 641.754, 640.854, 636.703, 635.162, 634.659, 632.37, 630.814, 631.348, 627.365, 624.222, 615.402, 605.362, 600.998, 597.229, 591.629, 585.678, 583.099, 577.164, 574.097, 567.123, 564.056, 552.582, 537.048, 523.941, 493.301, 454.849, 381.897, 377.762, 375.061, 388.901, 432.51, 451.813, 487.686, 502.991, 516.113, 519.485, 516.296, 509.216, 489.578, 448.761, 430.725, 445.099, 459.183, 485.428, 515.701, 517.197, 522.4, 518.997, 480.347, 442.993, 413.132, 425.323, 482.605, 524.796, 549.255, 559.738, 553.97, 538.864, 513.168, 462.067, 444.778, 396.362, 401.535, 431.732, 457.184, 493.317, 507.675, 521.79, 532.837, 545.746, 562.119, 571.03, 578.11, 586.578, 584.579, 583.45, 578.995, 577.087, 577.087, 573.654, 571.228, 547.302, 521.713, 511.703, 512.329, 515.93, 525.146, 527.939, 529.8, 529.8, 528.473, 525.818, 523.987, 518.799, 516.815, 516.815, 519.852, 533.676, 549.698, 565.903, 581.039, 596.832, 609.711, 613.098, 622.665, 625.275, 627.731, 627.731, 626.724, 615.311, 611.649, 596.725, 588.684, 579.865, 575.104, 575.104, 574.127, 574.127, 574.127, 574.127, 567.047, 534.729, 499.023, 458.069, 446.564, 464.096, 508.667, 567.627, 589.905, 613.22, 615.906, 602.173, 588.165, 580.917, 528.397, 504.7, 464.691, 458.496, 468.994, 526.794, 553.513, 576.324, 608.688, 625.183, 641.51, 641.51, 646.805, 650.787, 651.581, 656.631, 659.76, 663.818, 663.818, 657.257, 648.575, 638.809, 628.677, 627.792, 634.872, 639.786, 651.199, 661.087, 679.657, 692.154, 700.302, 711.182, 720.551, 729.218, 738.403, 742.615, 751.862, 751.862, 753.082, 755.92, 756.577, 757.233, 760.101, 758.026, 761.505, 763.046, 767.563, 773.987, 777.618, 779.922, 784.256, 789.139, 789.261, 791.412, 791.931, 791.931, 789.886, 789.886, 785.355, 783.722, 781.693, 778.473, 768.234, 766.342, 765.747, 772.614, 784.195, 799.957, 811.157, 816.452, 825.18, 831.253, 833.176, 839.386, 844.757, 847.717, 851.41, 853.653, 856.689, 858.154, 858.154, 858.154, 855.591, 855.591, 858.002, 857.574, 855.057, 855.057, 851.41, 856.781, 855.148, 848.068, 835.541, 822.647, 792.801, 796.616, 813.477, 840.515, 864.044, 867.111, 857.925, 844.696, 847.778, 875.671, 893.158, 902.145, 915.283, 924.5, 932.785, 938.065, 941.956, 942.566, 942.566, 942.032, 940.704, 938.721, 933.38, 922.165, 912.323, 895.462, 881.821, 878.601, 879.242, 885.818, 887.787, 898.972, 906.982, 915.451, 934.937, 940.872, 948.669, 959.503, 969.955, 978.287, 984.406, 993.515, 999.359, 999.985, 999.985, 999.985, 999.985, 999.985, 999.985, 999.985, 999.985, 999.985, 999.985, 999.985, 999.985, 999.985, 999.985, 999.985, 999.985, 999.985, 999.985, 999.985, 999.985, 999.985, 999.985, 999.985, 999.985, 999.985, 999.985];
+
+document.getElementById("reloadbutton").style.visibility = 'hidden'; // Reload button not currently used, but left in case it's needed later
+
+//~ // Local sources
+//~ mainSVG.src = "MainSystem.svg";
+//~ wallsSVG.src = "Walls.svg";
+//~ lamplightSVG.src = "Lamplight.svg";
+
+// Online sources
+mainSVG.src = "https://photophysics.com/media/5gumrima/mainsystem.svg";
+wallsSVG.src = "https://www.photophysics.com/media/15vdmor3/walls.svg";
+lamplightSVG.src = "https://www.photophysics.com/media/qp2lnne5/lamplight.svg";
+
+mainSVG.onload = function() {
+	mainSVGwidth = mainSVG.width;
+	mainSVGheight = mainSVG.height;
+	particles = (function() {
+		var j, ref, results;
+		results = [];
+		for (i = j = 1, ref = NUM_PARTICLES; (1 <= ref ? j <= ref : j >= ref); i = 1 <= ref ? ++j : --j) {
+			results.push(new Particles());
+		}
+		return results;
+	})();
+	// Define positions of optics
+	lampX = 530 - mainSVGwidth / 2;
+	lampY = 428 - mainSVGheight / 2;
+	lampMirrorX = 534 - mainSVGwidth / 2;
+	lampMirrorY = 379 - mainSVGheight / 2;
+	shutterX = 952 - mainSVGwidth / 2;
+	shutterY = 379 - mainSVGheight / 2;
+	shutterEdgeX = 904 - mainSVGwidth / 2;
+	shutterEdgeY = 379 - mainSVGheight / 2;
+	slit1X = 1005 - mainSVGwidth / 2;
+	slit1Y = 379 - mainSVGheight / 2;
+	mirror1X = 1244 - mainSVGwidth / 2;
+	mirror1Y =  379 - mainSVGheight / 2;
+	prism1X = 1049 - mainSVGwidth / 2;
+	prism1Y = 414 - mainSVGheight / 2;
+	mirror2X = 1247 - mainSVGwidth / 2;
+	mirror2Y =  414 - mainSVGheight / 2;
+	slit2X = 1019 - mainSVGwidth / 2;
+	slit2Y = 480 - mainSVGheight / 2;
+	mirror3X = 787 - mainSVGwidth / 2;
+	mirror3Y =  546 - mainSVGheight / 2;
+	prism2X = 986 - mainSVGwidth / 2;
+	prism2Y = 547 - mainSVGheight / 2;
+	mirror4X = 791 - mainSVGwidth / 2;
+	mirror4Y =  580 - mainSVGheight / 2;
+	slit3X = 1030 - mainSVGwidth / 2;
+	slit3Y = 580 - mainSVGheight / 2;
+	lens1X = 1154 - mainSVGwidth / 2;
+	lens1Y = 580 - mainSVGheight / 2;
+	lens2X = 1358 - mainSVGwidth / 2;
+	lens2Y = 580 - mainSVGheight / 2;
+	pemX = 1376 - mainSVGwidth / 2;
+	pemY = 580 - mainSVGheight / 2;
+	sampleX = 1492 - mainSVGwidth / 2;
+	sampleY = 580 - mainSVGheight / 2;
+	detectorX = 1578 - mainSVGwidth / 2;
+	detectorY = 580 - mainSVGheight / 2;
+	detectorcenterX = 1654 - mainSVGwidth / 2;
+	detectorcenterY = 580 - mainSVGheight / 2;
+	bafflesX = 1154 - mainSVGwidth / 2;
+	bafflesY = 410 - mainSVGheight / 2;
+	fluorescenceportX = 1492 - mainSVGwidth / 2;
+	fluorescenceportY = 449 - mainSVGheight / 2;
+	tourUpdate();
+	requestAnimationFrame(animation);
+}
+
+//~ // Get local sources for SVG files
+//~ for (const [index, component] of components.entries()) {
+	//~ eval(component + "SVG").src = component + ".svg";
+//~ }
+
+// Get online sources for SVG files
+anmsSVG.src = "https://www.photophysics.com/media/s4qbgtfs/anms.svg";
+lampSVG.src = "https://www.photophysics.com/media/gzsiklx5/lamp.svg";
+focusingmirrorSVG.src = "https://www.photophysics.com/media/43vh0ai5/focusingmirror.svg";
+mirrorsSVG.src = "https://www.photophysics.com/media/uwnjlvf0/mirrors.svg";
+bafflesSVG.src = "https://www.photophysics.com/media/qzjpkwre/baffles.svg";
+lensesSVG.src = "https://www.photophysics.com/media/0d2fpph2/lenses.svg";
+pemSVG.src = "https://www.photophysics.com/media/fsynmcfc/pem.svg";
+detectorSVG.src = "https://www.photophysics.com/media/lscj0vvu/detector.svg";
+
+var MagnifyingGlassSVG = new Image();
+var MagnifyingGlassSVGwidth = 0;
+var MagnifyingGlassSVGheight = 0;
+
+// MagnifyingGlassSVG.src = "MagnifyingGlass.svg"; // Local source
+MagnifyingGlassSVG.src = "https://www.photophysics.com/media/a1yj2abp/magnifyingglass.svg"; // Online source
+
+MagnifyingGlassSVG.onload = function() {
+	MagnifyingGlassSVGwidth = MagnifyingGlassSVG.width;
+	MagnifyingGlassSVGheight = MagnifyingGlassSVG.height;
+}
+
+var DetectorHighlightSVG = new Image();
+
+//DetectorHighlightSVG.src = "DetectorHighlight.svg"; // Local source
+DetectorHighlightSVG.src = "https://www.photophysics.com/media/p4ycel1p/detectorhighlight.svg";// Online source
+
+let defaultCameraOffsetX = 50;
+let defaultCameraOffsetY = 80;
+let defaultcameraZoom = 0.9;
+let cameraOffset = { x: getCanvasWidth() / 2 - defaultCameraOffsetX, y: getCanvasHeight() / 2 - defaultCameraOffsetY};
+let cameraZoom = defaultcameraZoom;
+let MAX_ZOOM = 4;
+let MIN_ZOOM = 0.1;
+let SCROLL_SENSITIVITY = 0.0005;
+
+var yaw = 45; // Beam yaw, must be >0 so that circular polarisation becomes evident in orthographic view
+var gap = 10; // Slit gap
+var yawFactor = 1 / Math.cos(yaw / 180 * Math.PI);
+var prismAngle;
+var prismAngleFactor = 2; // Should be 1 for accurate prism movement. If larger, movement is exaggerated
+var m4Deflection = 0;
+var exitSlitDeflection = 0;
+var deflectionFactor = 1; // Should be 1 for accurate beam deflection. If larger, deflection is exaggerated
+var attenuation = 1; // Degree to which the shutter is closed
+var shutterStatus = "closed";
+var purgeStatus = "off";
+var purgeCounter = 0;
+var lampOn = false;
+var magnifierOn = false;
+var sampleOn = false;
+var cursorX;
+var cursorY;
+var currentWL = parseInt(document.getElementById("wlSlider").defaultValue);
+var currentpxWL = WLtopxWL(currentWL);
+var currentColor = WLtoColor(currentWL);
+var rndmWLs = [currentWL, 450, 600, 750];
+var rndmColors = rndmWLs.map(WL => WLtoColor(WL));
+var rndmRolls = Array(rndmWLs.length - 1).fill().map(() => Math.round(Math.random() * 360 - 180));
+rndmRolls.unshift(-45);
+var tourText = document.getElementById("tourtextVal");
+var tourStepText = document.getElementById("tourstepVal");
+var tourStep = 0; // Set back to 0 once debugging is done
+
+const paragraphAttr = "align='justify' style='padding: 0 0 5px'";
+var tourTexts = [];
+
+tourTexts.push("<p {0}><b>Care for a little tour?</b></p><p {0}>Use the arrow buttons to navigate through the tour and learn step-by-step how a Chirascan CD spectrometer works!</p><p {0}>While this schematic outlines a Chirascan system, most of the operating principles shown hold true for other CD spectrometers as well!</p><p {0}>Zoom in or out using the mousewheel, and pan by left-clicking and dragging.</p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>The lightsource</b></p><p {0}>As any spectrometer, a CD spectrometer has a lightsource. In the case of Chirascan systems, that's an air-cooled 150 W Xenon arc lamp that produces light in the UV and visible range of the electromagnetic spectrum.</p><p {0}>The lamp has a limited lifetime of about 1000 hours of usage. But don't worry, lamp replacement is quick and easy for Chirascan systems; this only takes about 10 minutes and doesn't require a service visit or an alignment procedure because lamps for Chirascan systems are pre-aligned.</p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>Oh no, ozone!</b></p><p {0}>But look at all that oxygen floating about in our system! If we'd ignite the lamp now, the UV light would turn that into ozone. We don't want that because<ul><li>Ozone is toxic.</li><li>Ozone degrades the system's optics.</li><li>Ozone and oxygen absorb  UV light.</li></ul></p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>Nitrogen to the rescue</b></p><p {0}>To prevent the formation of ozone, oxygen is removed from the system by purging with an inert gas that is transparent to UV light, typically nitrogen.</p><p {0}>In Chirascan systems, nitrogen purging is controlled by the Active Nitrogen Management System (ANMS).</p><p {0}>The ANMS consists of the following components:<ul><li>A pressure regulator that regulates the pressure of the incoming gas to 4 bar.</li><li>A filter that contains active charcoal to remove organic impurities and a molecular sieve to remove humidity from the nitrogen gas, as well as a humidity indicator.</li><li>A solenoid valve box that diverts the nitrogen flow to three separate lines for the lamp, monochromator, and sample chamber.</li></ul></p><p {0}>The ANMS also includes some electronics and a control software that allows scheduling of system startup and shutdown.</p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>Clear the way!</b></p><p {0}>Now let's purge the system to remove the oxygen. Tick the Purge checkbox!</p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>Let there be light!</b></p><p {0}>Now that all the oxygen is gone and we don't have to worry about ozone anymore, let's ignite the lamp. Tick the Lamp checkbox!</p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>Open the floodgates!</b></p><p {0}>The light is collected and focused by a collection mirror.</p><p {0}>By default however, a shutter prevents the UV light from entering the monochromator, and the shutter is automatically opened only for acquisition.</p><p {0}>This effectively serves to increase the system's lifetime: despite nitrogen purging, there will always be some residual oxygen that will form ozone upon exposure to UV light and slowly degrade the optics over time. By letting light into the monochromator only when needed, this slow degradation is kept to a minimum.</p><p {0}>Moreover, this 'auto shutter' function limits the exposure of the optics to intense irradiation, which also tends to degrade them over time.</p><p {0}>Now open the shutter by ticking the Shutter checkbox!</p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>Monochromator components</b></p><p {0}>The monochromator contains a couple of slits, prisms, lenses, and mirrors that guide the light through the system.</p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>The heart of the monochomator</b></p><p {0}>The monochromator of Chirascan systems is a dual-prism monochromator, i.e., it contains two prisms. These serve two purposes:<ul><li>Selection of wavelength</li><li>Selection of polarization</li></ul></p></p>Instead of prisms, some other CD spectrometers use gratings because they are less susceptible to degradation caused by ozone and UV radiation.</p><p {0}>However, prisms are still preferable due to their much higher dispersion and transmission in the far-UV; this allows the slits to be opened wider and results in a higher light throughput.</p><p {0}>In the next steps we'll see how that works.</p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>Wavelength selection</b></p><p {0}>After passing the first slit and being guided by the first folding mirror, the beam reaches the first prism, which disperses the light into its component wavelengths.</p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>Slit width</b></p><p {0}>At the slits, only light within certain limits around a selected wavelength is passed through.</p><p {0}>The gap of the slits determines the spectral bandwidth: Try moving the Slit width slider!</p><p {0}><b>Note: Although related, slit width is <i>not</i> the same as spectral bandwidth!</b></p><p {0}><ul><li><b>The slit width</b> is the size of the gap between the two metal blades of the slit and is typically in the order of millimeters.</li><li><b>The spectral bandwidth</b> is the wavelength interval comprising the wavelengths that are allowed to pass through the slit and is in the order of nanometers.</li></ul></p><p {0}>The maximum slit width is actually being limited in a wavelength-dependent manner, but we ignore this here for the sake of simplicity.</p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>Stray light</b></p><p {0}>Any stray light of unwanted wavelengths is reduced by baffles, i.e., reflections of some excluded rays are being attenuated.</p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>Dual-polarising monochromator</b></p><p {0}>The monochromator of Chirascan systems is not just a <i>dual-prism</i> monochromator, but also a <i>dual-polarising</i> monochromator, i.e., not only does it contain two prisms for wavelength selection, but also, <i>both</i> prisms partake in selection of polarisation.</p><p {0}>Each prism disperses both vertical and horizontal linearly polarised light, and dispersion of these two components happens at different angles. For simplicity, we only show dispersion for one of them here though.</p><p {0}><b>This is a feature that distinguishes the monochromator of Chirascan systems from monochromators of other manufacturers where only one of the two prisms is involved in selection of polarisation.</b></p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>Seeing polarised light</b></p><p {0}>The light that's coming from the lamp consists of light waves of a range of different wavelengths and different orientations of linear polarisation.</p><p {0}>For the purpose of this tour, we have a magic magnifying glass which shows you light waves up close and reveals their polarisation. Try it out now by ticking the Magnifying glass checkbox, then move it across the light coming from the lamp!</p><p {0}>The lamp's output comprises a continuum of wavelengths, of course, but for clarity, we are only showing 4 different ones here. Note the different colors and peak distances.</p><p {0}>Likewise, we only show the polarisation for the selected wavelength after the first prism. We are looking at the monochromator from the top, so the polarisation for that light wave is in the plane of your screen, i.e., horizontal.</p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>Excluded rays</b></p><p {0}>Let's have a look at one of the excluded rays that doesn't pass through the intermediate slit. You can see that it has a different wavelength to that of the ray that passes through the intermediate slit, but it is also horizontal linearly polarised.</p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>Why a second prism?</b></p><p {0}>Since the first prism is also selecting for polarisation, the ray of the desired wavelength that passes through the intermediate slit already has the linear polarisation we want, i.e., horizontal polarisation.</p><p {0}>However, there's still one ray coming through the intermediate slit that we don't want: the beam passing the slit is actually a mixture of light with the desired wavelength and horizontal linear polarisation, and light at a different wavelength and vertical linear polarisation.</p><p {0}>As we are looking at the monochromator from the top, and the vertcial linearly polarised light wave is in a plane orthogonal to the plane of your screen, it appears as a line to us. You can still make out the darker peaks and lighter throughs of the wave though.</p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>Cleaning up</b></p><p {0}>To clean up this beam and get rid of the vertical linearly polarised light, the second prism comes into play.</p><p {0}>See how the second prism disperses the undesired ray differently, so that it won't pass through the third slit.</p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>In focus</b></p><p {0}>After passing through the third slit, the beam is focused by lenses to the sample position.</p><p {0}>You can see this better if you open up the slit width.</p><p {0}>This is a difference to some other CD spectrometers that use a collimated beam instead.</p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>Circular polarisation</b></p><p {0}>\"I thought, CD spectrometers produce circularly polarised light...\" I hear you say. Yes, yes, all of this was necessary first because we need horizontally polarised light of the selected wavelength to allow conversion into circularly polarised light. This conversion is carried out by the Photoelastic Modulator (PEM).</p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>The Photoelastic Modulator (PEM)</b></p><p {0}>The PEM comprises an optical element made of a fused silica crystal (shown in blue) that the light passes through.</p><p {0}>The optical element is connected to a piezoelectric element (shown in gray) which is periodically stretched and compressed by applying a voltage to it. This mechanical stress is transferred to the optical element and induces a change of its birefringence. This means that the index of refraction becomes different for light linearly polarised along one or the other of two perpendicular axes of the crystal.</p><p {0}>To make it easier to see the PEM's periodic change, we have increased its animation speed right now. However, in reality, this happens even faster! The frequency of a PEM is typically 50 kHz, i.e., this oscillation happens 50000 times per second!</p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>Depicting circularly polarised light</b></p><p {0}>We have slowed down the PEM's animation speed again because, relative to the speed of light, its modulation happens rather slowly—and we have already dramatically slowed down the animation speed of our light waves; the speed of light is about 4 orders of magnitude faster than our PEM frequency, after all!</p><p {0}>Have a look at the light wave between the PEM and the sample holder. In schematics, circularly polarised light generated by a PEM is often depicted like here, as alternating wave segments of left- and right circular polarisation, with gaps between those segments. However, that is actually quite a misleading depiction, because<ul><li>the conversion of linearly polarised light into circularly polarised light does not happen in discrete pulses, but is a continuous process</li><li>perfectly circularly polarised light is only obtained at the end points of the PEM oscillation</li></ul></p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>Depicting circularly polarised light...correctly</b></p><p {0}>Now we have something that's closer to reality! We have a continuous light wave the polarisation of which is modulated gradually.</p><p {0}>See how the polarisation changes? You may want to make sure that you've choosen a small wavelength to see it more clearly.</p><p {0}>You may also want to increase the PEM animation speed a bit and maybe decrease the light animation speed to see it more clearly—corresponding sliders are available now. Their labels show you how much PEM and light are being slowed down in the animation compared to reality.</p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>A continuous process</b></p><p {0}>To help you understand the continuity of the conversion into circularly polarised light, different points in time are being highlighted now and the PEM modulation is being displayed.</p><p {0}>The PEM modulation effectively slows down the two linear, orthogonal components relative to each other that the incoming linearly polarised light consists of. This introduces a phase shift between the two components, which gradually changes between plus/minus a quarter of the wavelength, <i>λ</i>, i.e., between -0.25 * <i>λ</i> and +0.25 * <i>λ</i>. That is, at the end points of its oscillation, the PEM acts as a quarter waveplate.</p><p {0}><ul><li>At a modulation of -0.25 * <i>λ</i>, the resulting light is right-handed circularly polarised</li><li>At a modulation of +0.25 * <i>λ</i>, the resulting light is left-handed circularly polarised</li><li>At a modulation of 0 * <i>λ</i>, there is no phase shift, and the light passing through the PEM's optical element retains its linear horizontal polarisation</li><li>At any other modulation, the resulting light is elliptically polarised, with right-handedness for negative phase shifts and left-handedness for positive phase shifts</li></ul></p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>Measuring a sample</b></p><p {0}>Now let's see what happens if we put in a sample. Tick the Sample checkbox now!</p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>CD is differential absorbance</b></p><p {0}>Circular dichroism spectroscopy is an absorbance-based technique. What we measure here is actually a differential absorbance: CD is the difference between the absorbance of left-handed circularly polarised light, <i>A</i><sub>L</sub>, and the absorbance of right-handed circularly polarised light, <i>A</i><sub>R</sub>.</p><p {0}>CD = <i>A</i><sub>L</sub> - <i>A</i><sub>R</sub></p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>It's about time</b></p><p {0}>So, we are only interested in the circularly polarised light, not in the elliptically polarised light we get from the PEM most of the time!</p><p {0}>This is why detector operation must be synchronised with the PEM's frequency, so that we only actually record incoming photons when the PEM modulation is near an end point (this is illustrated by the detector flashing).</p><p {0}>The detector itself cannot distinguish between different kinds of polarisation; it can only operate correctly in unison with the PEM!</p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>Getting a CD signal</b></p><p {0}>For a sample to give a CD signal, it must contain a chromophore and be chiral, i.e., not super-imposable with its mirror image.</p><p {0}>At the current wavelength, 190 nm, our sample completely absorbs right circularly polarised light, but doesn't absorb left circularly polarised light, so that gives us a negative CD signal.</p><p {0}>However, this is wavelength-dependent, of course. Change the wavelength to 290 nm and have a look again! Now, the left circularly polarised light is absorbed by about half, and the right circularly polarised light is not absorbed, which would result in a positive CD signal half as large as before.</p><p {0}>To illustrate this with some data, you can see a CD spectrum of the sample with the current wavelength that our monochromator is set to marked by a grey crosshair.</p><p {0}>Note that this is a normalised CD spectrum, i.e., we are only interested in the sign and relative intensity of our CD signal for the purpose of this tour.</p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>High sensitivity is key</b></p><p {0}>In fact, we have exaggerated the difference in absorbance of left and right circularly polarised light here a lot for clarity. For typical samples, the difference between the absorbances of the two components is about 4 orders of magnitude smaller than the absorbances of each individual component. This is why CD spectrometers must be highly sensitive.</p><p {0}>Whereas the Chirascan VX uses a conventional PMT detector, the Chirascan V100 and Q100 models use a solid state detector (a large area avalanche photodiode, or LAAPD), which gives you that extra bit of sensitivity for highest-quality data.</p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>There is more</b></p><p {0}>While Chirascan systems are first and foremost CD spectrometers, the manual models, <a href='https://www.photophysics.com/product-pages/chirascan-vx/'>Chirascan VX</a> and <a href='https://www.photophysics.com/product-pages/chirascan-v100/'>Chirascan V100</a>, offer the possibility to use more than a dozen accessories for special applications.</p><p {0}>This includes a range of fluorescence-based accessories which can be installed making use of the fluorescence detector port of the sample chamber. Why not have a closer look at the <a href='https://www.photophysics.com/product-pages/chirascan-accessories/'>Chirascan accessories</a> on our website?</p>".replaceAll("{0}", paragraphAttr));
+
+tourTexts.push("<p {0}><b>But what about...?</b></p><p {0}>This concludes our little tour about the operating principles of Chirascan systems⁠—hopefully it was fun and you learned something.</p><p {0}>If you want to learn more details about Circular Dichroism spectroscopy or CD instrumentation, you may want to check out the <a href='https://www.photophysics.com/faqs/methods-techniques/'>FAQ section</a> on our website.</p>".replaceAll("{0}", paragraphAttr));
+
+// Creation of particles
+// Modified from https://codepen.io/linrock/pen/nMadjQ
+var COLORS, Particles, NUM_PARTICLES, i;
+NUM_PARTICLES = 250;
+COLORS = [[181, 23, 38], [158, 36, 123]];
+
+// Define area for nitrogen particle effect; taken from Nitrogenvolume_plain.svg
+const nitrogenvolume = new Path2D();
+var nitrogenvolume_ref = new Path2D("M -48.665247 -40.114347 C -50.309145 -40.114347 -51.641809 -38.781691 -51.641809 -37.137785 L -51.641809 -27.381791 L -84.45531 -28.037048 L -84.45531 -32.740637 L -93.920883 -32.740637 L -93.920883 -35.93114 L -127.31626 -35.93114 L -127.31626 12.275737 L -120.23039 12.275737 L -93.920883 7.5049683 L -93.920883 -9.3399984 L -84.45531 -9.3399984 L -84.45531 -14.043587 L -51.641809 -14.700395 L -51.641809 -3.7718628 C -51.641809 -2.599705 -51.096386 -1.4943792 -50.166447 -0.78083089 C -49.236508 -0.067251609 -48.691602 1.0380432 -48.691602 2.210201 C -48.691602 3.3823288 -49.236508 4.4882014 -50.166447 5.2017497 C -51.096386 5.915298 -51.641809 7.0206238 -51.641809 8.1927816 L -51.641809 38.879798 C -51.641809 40.523704 -50.309145 41.85636 -48.665247 41.85636 L -14.14384 41.85636 C -12.971681 41.85636 -11.866387 41.310936 -11.152808 40.380998 C -10.439258 39.45106 -9.3339346 38.906152 -8.1617757 38.906152 C -6.9896269 38.906152 -5.8837764 39.45106 -5.1702271 40.380998 C -4.4566478 41.310936 -3.351354 41.85636 -2.1791952 41.85636 L 39.861133 41.85636 C 41.033292 41.85636 42.138586 41.310936 42.852165 40.380998 C 43.565714 39.45106 44.671038 38.906152 45.843197 38.906152 C 47.015326 38.906152 48.120679 39.45106 48.834229 40.380998 C 49.547778 41.310936 50.653649 41.85636 51.825777 41.85636 L 78.223133 41.85636 C 79.867041 41.85636 81.199695 40.523704 81.199695 38.879798 L 81.199695 37.040117 L 85.776677 37.040117 L 85.776677 37.769271 L 89.398161 37.769271 L 89.398161 36.058264 L 106.24675 36.058264 L 106.24675 35.858793 L 124.96808 35.858793 L 124.96808 37.11143 L 129.73058 37.11143 L 129.73058 35.858793 L 134.5923 35.858793 L 134.5923 35.532198 L 134.5923 32.640902 L 139.10676 32.640902 L 139.10676 33.434652 L 142.28176 33.434652 L 142.28176 32.640902 L 149.07824 32.640902 L 149.07824 35.532198 L 153.54308 35.532198 L 153.54308 28.161589 L 149.07824 28.161589 L 149.07824 31.053402 L 142.28176 31.053402 L 142.28176 30.259652 L 139.10676 30.259652 L 139.10676 31.053402 L 134.5923 31.053402 L 134.5923 28.161589 L 134.5923 27.83551 L 129.73058 27.83551 L 129.73058 26.582874 L 124.96808 26.582874 L 124.96808 27.83551 L 106.24675 27.83551 L 106.24675 27.635523 L 89.398161 27.635523 L 89.398161 25.924516 L 85.776677 25.924516 L 85.776677 26.65367 L 81.199695 26.65367 L 81.199695 8.1927816 C 81.199695 7.0206238 80.654272 5.915298 79.724333 5.2017497 C 78.794424 4.4881714 78.249488 3.3823588 78.249488 2.210201 C 78.249488 1.0380732 78.794424 -0.067251609 79.724333 -0.78083089 C 80.654272 -1.4943792 81.199695 -2.599705 81.199695 -3.7718628 L 81.199695 -37.137785 C 81.199695 -38.781691 79.867041 -40.114347 78.223133 -40.114347 L 43.687256 -40.114347 C 42.515097 -40.114347 41.409763 -39.56944 40.696224 -38.639502 C 39.982645 -37.709594 38.876834 -37.16414 37.704675 -37.16414 C 36.532517 -37.16414 35.427193 -37.709594 34.713644 -38.639502 C 34.000104 -39.56944 32.89474 -40.114347 31.722612 -40.114347 L -2.1791952 -40.114347 C -3.351324 -40.114347 -4.4566478 -39.56944 -5.1702271 -38.639502 C -5.8837764 -37.709594 -6.9896269 -37.16414 -8.1617757 -37.16414 C -9.3339346 -37.16414 -10.439258 -37.709594 -11.152808 -38.639502 C -11.866387 -39.56944 -12.971681 -40.114347 -14.14384 -40.114347 L -48.665247 -40.114347 z ");
+
+const svgMatrix = document.createElementNS("http://www.w3.org/2000/svg", "svg").createSVGMatrix();
+var pathscale = svgMatrix.scale(pxPerMM);
+nitrogenvolume.addPath(nitrogenvolume_ref, pathscale);
+
+function getIforWL(WL) {
+	var I, index;
+	if (WL >= 180 && WL <= 1150) {
+		index = WL - 180;
+	} else if (WL < 180) {
+		console.log("WL = " + WL);
+		index = 0;
+	} else if (WL > 1150) {
+		index = -1;
+	}
+	I = Math.round((1000 - (HTvals[index] - Math.min.apply(Math, HTvals))) / 10) / 100;
+	return I;
+}
+
+function range(a, b) {
+	return (b - a) * Math.random() + a;
+};
+
+function drawCircle(x, y, r, c, o) {
+	var context;
+	if (focus.includes("oxygen")) {
+		context = fctx;
+	} else {
+		context = pctx;
+	}
+	var radgrad = pctx.createRadialGradient(x,y,0,x,y,r);
+	radgrad.addColorStop(0, `${c},${o}`);
+	radgrad.addColorStop(0.1, `${c},${o}`);
+	radgrad.addColorStop(1, `${c},${0}`);
+	
+	context.beginPath();
+	context.arc(x, y, r, 0, 2 * Math.PI, false);
+	context.fillStyle = radgrad;
+	return context.fill();
+};
+
+Particles = class Particles {
+	constructor() {
+		this.style = COLORS[~~range(0, COLORS.length)];
+		this.rgb = `rgba(${this.style[0]},${this.style[1]},${this.style[2]}`;
+		this.r = ~~range(2, 6);
+		this.r2 = 1.5 * this.r;
+		this.replace();
+	}
+
+	replace() {
+		this.opacity = 0;
+		this.dop = 0.01 * range(1, 4);
+		this.x = range(- mainSVGwidth / 2 - this.r2, mainSVGwidth / 2 - this.r2);
+		this.y = range(- mainSVGheight / 2 - this.r2, mainSVGheight / 2 - this.r2);
+		this.angle = range(0, 2 * Math.PI);
+		this.rot = range(0.8, 1);
+		this.va = 0.01 * this.r * range(-1, 1);
+		this.vy = range(0, 2) + 8 * 0.5 - 5;
+		this.vx = 0.1 * this.r + range(-1, 1);
+	}
+
+	draw() {
+		var ref;
+		this.x += this.vx;
+		this.y += this.vy;
+		this.angle += this.va;
+		this.opacity += this.dop;
+		if (this.opacity > 0.5) {
+			this.opacity = 0.5;
+			this.dop *= -0.1;
+		}
+		if (this.opacity < 0) {
+			this.replace();
+		}
+		if(pctx.isPointInPath(nitrogenvolume, ((~~this.x + cameraOffset.x) / getCanvasWidth() - (1 - 1 / cameraZoom) / 2) * windowWidth * cameraZoom, ((~~this.y + cameraOffset.y) / getCanvasHeight() - (1 - 1 / cameraZoom) / 2) * windowHeight * cameraZoom)){
+			drawCircle(~~this.x, ~~this.y, this.r, this.rgb, this.opacity + 0.1);
+			drawCircle(~~this.x + Math.sin(this.angle) * this.r, ~~this.y + Math.cos(this.angle) * this.r, this.r * this.rot, this.rgb, this.opacity - 0.1);
+		} else {
+			this.replace();
+		}
+	}
+
+};
+
+function getSampleSignal(WL) {
+	// Approximation for normalised (between -1 and 0.5) CSA signal depending on wavelength
+	var HighPeakWL = 291;
+	var HighPeakBW = 20;
+	var HighPeakI0 = 1 / 2.08;
+	var HighPeakRho = 0.88;
+	var LowPeakWL = 191;
+	var LowPeakBW = 15;
+	var LowPeakI0 = -1;
+	var LowPeakRho = 1.03;
+	var signal, peakWL, peakBW, peakI0, peakRho;
+	
+	signal = 0;
+	signal += LowPeakI0 * Math.exp(-(Math.log10(2) / (Math.log10(LowPeakRho)) ** 2) * Math.log10(1 + ((WL - LowPeakWL)*(LowPeakRho ** 2 - 1))/(LowPeakRho * LowPeakBW)) ** 2);
+	signal += HighPeakI0 * Math.exp(-(Math.log10(2) / (Math.log10(HighPeakRho)) ** 2) * Math.log10(1 + ((WL - HighPeakWL)*(HighPeakRho ** 2 - 1))/(HighPeakRho * HighPeakBW)) ** 2);
+	return signal;
+}
+
+function getCursor(event) {
+    cursorX = event.clientX;
+    cursorY = event.clientY;
+    console.log("Clicked at: " + String(cursorX) + ", " + String(cursorY));
+}
+
+var sampleCheckbox = document.getElementById("sampleCheckbox");
+
+sampleCheckbox.oninput = function() {
+	if (sampleCheckbox.checked == true){
+		sampleOn = true
+		document.getElementById('graphcanvas_div').style.display = 'block';
+	} else {
+		sampleOn = false
+		document.getElementById('graphcanvas_div').style.display = 'none';
+	}
+}
+
+var magnifierCheckbox = document.getElementById("magnifierCheckbox");
+
+magnifierCheckbox.oninput = function() {
+	if (magnifierCheckbox.checked == true){
+		magnifierOn = true
+	} else {
+		magnifierOn = false
+	}
+}
+
+var purgeCheckbox = document.getElementById("purgeCheckbox");
+
+purgeCheckbox.oninput = function() {
+	if (purgeCheckbox.checked == true){
+		purgeStatus = "started";
+		document.getElementById("lampCheckbox").removeAttribute("disabled");
+		
+	} else {
+		purgeStatus = "off";
+		lampOn = false
+		document.getElementById("lampCheckbox").setAttribute("disabled","disabled");
+		document.getElementById("lampCheckbox").checked = false;
+	}
+}
+
+var lampCheckbox = document.getElementById("lampCheckbox");
+
+lampCheckbox.oninput = function() {
+	if (lampCheckbox.checked == true){
+		lampOn = true
+	} else {
+		lampOn = false
+	}
+}
+
+var shutterCheckbox = document.getElementById("shutterCheckbox");
+
+shutterCheckbox.oninput = function() {
+	if (shutterCheckbox.checked == true){
+		shutterStatus = "open"
+	} else {
+		shutterStatus = "closed"
+	}
+}
+
+var speedSlider = document.getElementById("speedSlider");
+
+speedSlider.oninput = function() {
+	speedFactor = parseInt(this.value);
+	speedRelLightSpeed = speedFactor / (10 ** 11);
+	speedMMperS = (speedOfLightMperS * 1000) * speedRelLightSpeed;
+	speedPXperS = speedMMperS * pxPerMM;
+}
+
+var pemSlider = document.getElementById("pemSlider");
+
+pemSlider.oninput = function() {
+	pemFactor = parseInt(this.value);
+	speedRelPEMSpeed = pemFactor / (10 ** 7);
+	pemFrequency = PEMfrequency * speedRelPEMSpeed;
+}
+
+var wlSlider = document.getElementById("wlSlider");
+
+wlSlider.oninput = function() {
+	currentWL = parseInt(this.value);
+}
+// Slider to change yaw, for testing purposes only
+//~ var yawSlider = document.getElementById("yawSlider");
+
+//~ yawSlider.oninput = function() {
+	//~ yaw = this.value;
+	//~ yawFactor = 1 / Math.cos(yaw / 180 * Math.PI);
+//~ }
+
+var gapSlider = document.getElementById("gapSlider");
+
+gapSlider.oninput = function() {
+	gap = this.value;
+}
+
+var t = 0;
+
+var graphSVG = new Image();
+graphSVG.onload = function() {
+	graphcanvasWidth = document.getElementById('graphcanvas_div').clientWidth;
+	graphcanvasHeight = document.getElementById('graphcanvas_div').clientHeight;
+	graphcanvas.width = graphcanvasWidth;
+	graphcanvas.height = graphcanvasHeight;
+	updateGraph();
+}
+//graphSVG.src = "NormalisedCSA.svg"; // Local source
+graphSVG.src = "https://www.photophysics.com/media/5vfjq4fr/normalisedcsa.svg";// Online source
+
+function getCanvasCoords(WL, CD) {
+	var x = (svgPlotX + (WL - 180) / 160 * svgPlotWidth) / svgPageWidth * graphcanvasWidth;
+	var y = (svgPlotY + (1.2 - CD) / 2.4 * svgPlotHeight) / svgPageHeight * graphcanvasHeight;
+	return [x, y];
+}
+
+function updateGraph() {
+	graphcanvasWidth = document.getElementById('graphcanvas_div').clientWidth;
+	graphcanvasHeight = document.getElementById('graphcanvas_div').clientHeight;
+	graphcanvas.width = graphcanvasWidth;
+	graphcanvas.height = graphcanvasHeight;
+	var startCoords, endCoords;
+	var signal = getSampleSignal(currentWL);
+	gctx.clearRect(0, 0, graphcanvasWidth, graphcanvasHeight);
+	gctx.drawImage(graphSVG, 0, 0, graphcanvasWidth, graphcanvasHeight);
+	if (currentWL >= 180 && currentWL <= 340) {
+		gctx.strokeStyle = "LightGray";
+		//gctx.setLineDash([1, 2]);
+		gctx.beginPath();
+		startCoords = getCanvasCoords(currentWL, -1.2);
+		endCoords = getCanvasCoords(currentWL, 1.2);
+		gctx.moveTo(startCoords[0], startCoords[1]);
+		gctx.lineTo(endCoords[0], endCoords[1]);
+		gctx.closePath();
+		gctx.stroke();
+		gctx.beginPath();
+		startCoords = getCanvasCoords(180, signal);
+		endCoords = getCanvasCoords(340, signal);
+		gctx.moveTo(startCoords[0], startCoords[1]);
+		gctx.lineTo(endCoords[0], endCoords[1]);
+		gctx.closePath();
+		gctx.stroke();
+	}
+}
+
+function WLtopxWL(WL) {
+	// Conversion screen to physical: 1 px per mm
+	// Wavelength zoom factor: 40,000, i.e., 0.04 mm per nm
+	const factor = 0.04;
+	var pxWL = Math.ceil(WL * factor);
+	return pxWL;
+}
+
+function WLtoColor(WL) {
+	const redHue = 0;
+	const violetHue = 300;
+	var hue = violetHue - (WL - violet) / (red - violet) * violetHue;
+	var saturation = 50;
+	var lightness = 50;
+	if (hue < redHue) {
+		hue = redHue;
+	}
+	if (hue > violetHue) {
+		hue  = violetHue;
+		saturation = (WL - deepUV) / (violet - deepUV) * saturation;
+	}
+	return [hue, saturation, lightness];
+}
+
+function roundTo(val, digits) {
+	result = Math.round((val + Number.EPSILON) * 10 ** digits) / 10 ** digits;
+	return result;
+}
+
+function Label(text, x, y) {
+	this.text = text;
+	this.x = x;
+	this.y = y;
+	this.draw = function() {
+		ctx.fillStyle = "black";
+		var lines = this.text.split('\n');
+		var fontsize = 6;
+		var lineheight = fontsize;
+		ctx.textAlign = "center";
+		ctx.font = fontsize + "px Arial";
+		for (var i = 0; i < lines.length; i++)
+		    ctx.fillText(lines[i], this.x, this.y + (i * lineheight) );
+	}
+}
+
+var modulationText = new Label(text = "N/A", x = 1376 - 1920 / 2, y = 650 - 919 / 2);
+var statesText = new Label(text = "", x = 1441 - 1920 / 2, y = 614 - 919 / 2);
+
+function extrapolateLine(x1, y1, x2, y2, dx, mode = "start") {
+	var x3, y3;
+	var slope = (y2 - y1) / (x2 - x1);
+	var dy = slope * dx;
+	if (mode == "start") {
+		x3 = x1 + dx;
+		y3 = y1 + dy;
+	} else if (mode == "end") {
+		x3 = x2 - dx;
+		y3 = y2 - dy;
+	}
+	return [x3, y3];
+}
+
+function drawShutterBase(shutterX, shutterY) {
+	lctx.fillStyle = "white";
+	lctx.beginPath();
+	lctx.fillRect(shutterX, shutterY - 25, 50, 50);
+	lctx.closePath();
+	lctx.fill();
+	
+	const grd = ctx.createRadialGradient(shutterX, shutterY, 0, shutterX, shutterY, 45);
+	grd.addColorStop(0, "grey");
+	grd.addColorStop(1, "white");
+	lctx.fillStyle = grd;
+	lctx.beginPath();
+	lctx.arc(shutterX, shutterY, 45, 0, Math.PI * 2);
+	lctx.strokeStyle = "#00000000";
+	lctx.stroke();
+	lctx.closePath();
+	lctx.fill();	
+}
+
+function animation(timestamp){
+	t = timestamp;
+	
+	updateGraph();
+	
+	lamplightcanvas.width = getCanvasWidth();
+	lamplightcanvas.height = getCanvasHeight();
+	
+	rainbowcanvas.width = getCanvasWidth();
+	rainbowcanvas.height = getCanvasHeight();
+	
+	rainbow2canvas.width = getCanvasWidth();
+	rainbow2canvas.height = getCanvasHeight();
+
+	canvas.width = getCanvasWidth();
+	canvas.height = getCanvasHeight();
+	
+	beamscanvas.width = getCanvasWidth();
+	beamscanvas.height = getCanvasHeight();
+	
+	shadecanvas.width = getCanvasWidth();
+	shadecanvas.height = getCanvasHeight();
+	
+	focuscanvas.width = getCanvasWidth();
+	focuscanvas.height = getCanvasHeight();
+	
+	opticscanvas.width = getCanvasWidth();
+	opticscanvas.height = getCanvasHeight();
+	
+	beams2canvas.width = getCanvasWidth();
+	beams2canvas.height = getCanvasHeight();
+	
+	magnifiercanvas.width = getCanvasWidth();
+	magnifiercanvas.height = getCanvasHeight();
+	
+	particlescanvas.width = getCanvasWidth();
+	particlescanvas.height = getCanvasHeight();
+    
+	// Translate to the canvas centre before zooming - so you'll always zoom on what you're looking directly at
+	
+	lctx.translate( getCanvasWidth() / 2, getCanvasHeight() / 2 );
+	lctx.scale(cameraZoom, cameraZoom);
+	lctx.translate( -getCanvasWidth() / 2 + cameraOffset.x, -getCanvasHeight() / 2 + cameraOffset.y );
+	ctx.translate( getCanvasWidth() / 2, getCanvasHeight() / 2 );
+	ctx.scale(cameraZoom, cameraZoom);
+	ctx.translate( -getCanvasWidth() / 2 + cameraOffset.x, -getCanvasHeight() / 2 + cameraOffset.y );
+	bctx.translate( getCanvasWidth() / 2, getCanvasHeight() / 2 );
+	bctx.scale(cameraZoom, cameraZoom);
+	bctx.translate( -getCanvasWidth() / 2 + cameraOffset.x, -getCanvasHeight() / 2 + cameraOffset.y );
+	rctx.translate( getCanvasWidth() / 2, getCanvasHeight() / 2 );
+	rctx.scale(cameraZoom, cameraZoom);
+	rctx.translate( -getCanvasWidth() / 2 + cameraOffset.x, -getCanvasHeight() / 2 + cameraOffset.y );
+	r2ctx.translate( getCanvasWidth() / 2, getCanvasHeight() / 2 );
+	r2ctx.scale(cameraZoom, cameraZoom);
+	r2ctx.translate( -getCanvasWidth() / 2 + cameraOffset.x, -getCanvasHeight() / 2 + cameraOffset.y );
+	sctx.translate( getCanvasWidth() / 2, getCanvasHeight() / 2 );
+	sctx.scale(cameraZoom, cameraZoom);
+	sctx.translate( -getCanvasWidth() / 2 + cameraOffset.x, -getCanvasHeight() / 2 + cameraOffset.y );
+	fctx.translate( getCanvasWidth() / 2, getCanvasHeight() / 2 );
+	fctx.scale(cameraZoom, cameraZoom);
+	fctx.translate( -getCanvasWidth() / 2 + cameraOffset.x, -getCanvasHeight() / 2 + cameraOffset.y );
+	octx.translate( getCanvasWidth() / 2, getCanvasHeight() / 2 );
+	octx.scale(cameraZoom, cameraZoom);
+	octx.translate( -getCanvasWidth() / 2 + cameraOffset.x, -getCanvasHeight() / 2 + cameraOffset.y );
+	b2ctx.translate( getCanvasWidth() / 2, getCanvasHeight() / 2 );
+	b2ctx.scale(cameraZoom, cameraZoom);
+	b2ctx.translate( -getCanvasWidth() / 2 + cameraOffset.x, -getCanvasHeight() / 2 + cameraOffset.y );
+	mctx.translate( getCanvasWidth() / 2, getCanvasHeight() / 2 );
+	mctx.scale(cameraZoom, cameraZoom);
+	mctx.translate( -getCanvasWidth() / 2 + cameraOffset.x, -getCanvasHeight() / 2 + cameraOffset.y );
+	pctx.translate( getCanvasWidth() / 2, getCanvasHeight() / 2 );
+	pctx.scale(cameraZoom, cameraZoom);
+	pctx.translate( -getCanvasWidth() / 2 + cameraOffset.x, -getCanvasHeight() / 2 + cameraOffset.y );
+	
+	// Clear canvas
+	
+	lctx.clearRect(-getCanvasWidth() / 2, -getCanvasHeight() / 2, getCanvasWidth(), getCanvasHeight());
+	ctx.clearRect(-getCanvasWidth() / 2, -getCanvasHeight() / 2, getCanvasWidth(), getCanvasHeight());
+	bctx.clearRect(-getCanvasWidth() / 2, -getCanvasHeight() / 2, getCanvasWidth(), getCanvasHeight());
+	rctx.clearRect(-getCanvasWidth() / 2, -getCanvasHeight() / 2, getCanvasWidth(), getCanvasHeight());
+	r2ctx.clearRect(-getCanvasWidth() / 2, -getCanvasHeight() / 2, getCanvasWidth(), getCanvasHeight());
+	sctx.clearRect(-getCanvasWidth() / 2, -getCanvasHeight() / 2, getCanvasWidth(), getCanvasHeight());
+	fctx.clearRect(-getCanvasWidth() / 2, -getCanvasHeight() / 2, getCanvasWidth(), getCanvasHeight());
+	octx.clearRect(-getCanvasWidth() / 2, -getCanvasHeight() / 2, getCanvasWidth(), getCanvasHeight());
+	b2ctx.clearRect(-getCanvasWidth() / 2, -getCanvasHeight() / 2, getCanvasWidth(), getCanvasHeight());
+	mctx.clearRect(-getCanvasWidth() / 2, -getCanvasHeight() / 2, getCanvasWidth(), getCanvasHeight());
+	pctx.clearRect(-getCanvasWidth() / 2, -getCanvasHeight() / 2, getCanvasWidth(), getCanvasHeight());
+	
+	var newCoords;
+	
+	// Move to new focus, if applicable
+	
+	if (focussing == true) {
+		// Update focus
+		
+		var positionReached = false;
+		var zoomReached = false;
+		
+		var moveDiff = 5;
+		var oldX = getCanvasWidth() / 2 - cameraOffset.x;
+		var oldY = getCanvasHeight() / 2 - cameraOffset.y;
+		
+		var xDiff = newFocusX - oldX;
+		var yDiff = newFocusY - oldY;
+
+		var moveSignX = Math.sign(xDiff);
+		var moveSignY = Math.sign(yDiff);
+		var deltaX = moveSignX * Math.sqrt(moveDiff ** 2 / (1 + (yDiff / xDiff) ** 2));
+		var deltaY = moveSignY * Math.sqrt(moveDiff ** 2 - deltaX ** 2);
+
+		var targetDiff = Math.sqrt(xDiff ** 2 + yDiff ** 2);
+		var newDiff = Math.sqrt(deltaX ** 2 + deltaY ** 2);
+		
+		if (newDiff < targetDiff) {
+			cameraOffset.x -= deltaX * cameraMoveFactor;
+			cameraOffset.y -= deltaY * cameraMoveFactor;
+		} else if (targetDiff != 0) {
+			cameraOffset.x -= xDiff;
+			cameraOffset.y -= yDiff;
+		} else {
+			positionReached = true;
+		}
+		
+		// Update zoom
+		
+		if (zoomStep == 0) {
+			var steps;
+			steps = targetDiff / moveDiff;
+			if (steps < 20) {
+				steps = 20;
+			}
+			zoomStep = (newFocusZoom - cameraZoom) / steps * cameraZoomFactor;
+		}
+		
+		var oldZoom = cameraZoom;
+		var zoomSign = Math.sign(newFocusZoom - cameraZoom);
+		var newZoom = oldZoom + zoomStep;
+		
+		if (newFocusZoom - newZoom != 0 && Math.sign(newFocusZoom - newZoom) == zoomSign) {
+			cameraZoom += zoomStep;
+		} else if (newFocusZoom - cameraZoom != 0) {
+			cameraZoom = newFocusZoom;
+		} else {
+			zoomReached = true;
+			zoomStep = 0;
+		}
+		
+		if (positionReached == true && zoomReached == true) {
+			focussing = false;
+			positionReached = false;
+			zoomReached = false;
+		}
+	}
+	
+	if (focussing == true) {
+		document.getElementById("nextbutton").setAttribute("disabled","disabled");
+	} else {
+		document.getElementById("nextbutton").removeAttribute("disabled");
+	}
+	
+	if (focussing == true || tourStep == 0) {
+		document.getElementById("prevbutton").setAttribute("disabled","disabled");
+	} else {
+		document.getElementById("prevbutton").removeAttribute("disabled");
+	}
+	
+	// Draw rainbow beam
+	
+	var mirror2RainbowHeight = 15;
+	var slit2RainbowHeight = 35;
+	
+	if (lampOn && (shutterStatus == "open" || shutterStatus == "idle")) {
+	
+		newCoords = extrapolateLine(slit2X, slit2Y, mirror3X, mirror3Y, dx = 0.5, mode = "start");
+		
+		var intermediateSlitArc = 25;
+		var BW = gap / intermediateSlitArc * (maxWL - minWL);
+		
+		drawRainbowSegment(prism1X, prism1Y, mirror2X, mirror2Y, 0, mirror2RainbowHeight);
+		drawRainbowSegment(newCoords[0], newCoords[1], mirror3X, mirror3Y, intermediateSlitArc, slit2RainbowHeight, BW);
+		drawRainbowSegment(mirror2X, mirror2Y, slit2X, slit2Y, mirror2RainbowHeight, intermediateSlitArc);
+		drawRainbowSegment(mirror3X, mirror3Y, prism2X, prism2Y, slit2RainbowHeight, 40, BW);
+		drawRainbowSegment(prism2X, prism2Y, mirror4X, mirror4Y, 38, 43, BW);
+		drawRainbowSegment(mirror4X, mirror4Y, slit3X, slit3Y, 60, 60, BW);
+		drawRainbowSegment(slit3X, slit3Y, lens1X, lens1Y, 60, 60, BW);
+		drawRainbowSegment(sampleX, sampleY, lens1X, lens1Y, 0, 40, BW, linear = true, context = r2ctx);
+
+		drawShutterBase(shutterX, shutterY)
+	}
+	
+	// Draw lamp light
+	
+	if (lampOn == true) {
+		lctx.drawImage(lamplightSVG, -mainSVGwidth / 2, -mainSVGheight / 2);
+	}
+	
+	if (lampOn == false || (shutterStatus != "open" && shutterStatus != "idle")) {
+		drawShutterBase(shutterX, shutterY)
+	}
+	
+	// Draw background image
+	
+	ctx.drawImage(mainSVG, -mainSVGwidth / 2, -mainSVGheight / 2);
+	
+	// Draw magnifying glass
+	
+	if (magnifierOn == true) {
+		let x = null;
+		let y = null;
+		if (touchControl == false && magnifiercanvas.parentNode.querySelector(":hover") == canvas) {
+			x = cursorX;
+			y = cursorY;
+		} else if (touchControl == true && touchDoubleDrag == false && touchSingleDrag == true) {
+			x = touchSingleDragCoords.x;
+			y = touchSingleDragCoords.y;
+		}
+		if (x != null && y != null) {
+			let bounding = document.getElementById("canvascontainer").getBoundingClientRect();
+			let xCoord = getCanvasWidth() * ((x - bounding.left) / windowWidth / cameraZoom + (1 - 1 / cameraZoom) / 2) - cameraOffset.x;
+			let yCoord = getCanvasHeight() * ((y - bounding.top) / windowHeight / cameraZoom + (1 - 1 / cameraZoom) / 2) - cameraOffset.y;
+			mctx.drawImage(MagnifyingGlassSVG, xCoord - (magnifierRadius + magnifyingGlassOffset), yCoord - (magnifierRadius + magnifyingGlassOffset), MagnifyingGlassSVGwidth, MagnifyingGlassSVGheight);
+		}
+	}
+	
+	// Update attenuation
+	
+	var shutterStep = 0.05
+	
+	if (shutterStatus == "open") {
+		if (attenuation > 0) {
+			attenuation = attenuation - shutterStep
+		} else {
+			attenuation = 0
+		}
+	} else if (shutterStatus == "closed") {
+		if (attenuation < 1) {
+			attenuation = attenuation + shutterStep
+		} else {
+			attenuation = 1
+		}
+	}
+	
+	// Create Shutter
+	
+	shutter = new Shutter(posX = shutterX, posY = shutterY, 44);
+	shutter.draw();
+	
+	// Create prisms
+	
+	prism1 = new Prism(posX = prism1X, posY = prism1Y, width = 30, height = 50, idx = 1);
+	prism1.draw();
+	
+	prism2 = new Prism(posX = prism2X, posY = prism2Y, width = -30, height = -50, idx = 2);
+	prism2.draw();
+	
+	// Create Slits
+	
+	var slitThickness = 6;
+	
+	slit1 = new Slit(posX = slit1X, posY = slit1Y, width = slitThickness, height = 16, gap, idx = 1);
+	slit1.draw();
+	
+	slit2 = new Slit(posX = slit2X, posY = slit2Y, width = slitThickness, height = 16, gap, idx = 2);
+	slit2.draw();
+	
+	slit3 = new Slit(posX = slit3X, posY = slit3Y, width = slitThickness, height = 16, gap, idx = 3);
+	slit3.draw();
+	
+	// Create sample
+	
+	if (sampleOn == true) {
+	
+		sample1 = new Sample(701, 12, 12);
+		
+	} else {
+		
+		sample1 = new Sample(701, 12, 12);
+	}
+	
+	pem1 = new PEM(585, 12, 37, pemFrequency);
+	
+	if (tourStep == 19) {
+		pemFactor = 500;
+	} else {
+		pemFactor = parseInt(document.getElementById("pemSlider").value);
+	}
+	
+	if (tourStep == 25) {
+		document.getElementById("speedSlider").value = 10;
+		speedFactor = 10;
+		speedRelLightSpeed = speedFactor / (10 ** 11);
+		speedMMperS = (speedOfLightMperS * 1000) * speedRelLightSpeed;
+		speedPXperS = speedMMperS * pxPerMM;
+	}
+	
+	speedRelPEMSpeed = pemFactor / (10 ** 7);
+	pemFrequency = PEMfrequency * speedRelPEMSpeed;
+	timePerPemCycle = 1 / pemFrequency;
+	PEMmod = Math.sin((t / 1000) / timePerPemCycle * 2 * Math.PI) * maxPEMshift;
+	modulationText.text = "PEM\nModulation:\n" + roundTo(PEMmod, 2) + " × λ";
+	
+	if (PEMmod < -0.245) {
+		statesText.text = "Right\ncircularly\nPolarised\nLight";
+	} else if (PEMmod > 0.245) {
+		statesText.text = "Left\nCircularly\nPolarised\nLight";
+	} else if (PEMmod > -0.015 && PEMmod < 0.015) {
+		statesText.text = "Horizontal\nLinearly\nPolarised\nLight";
+	} else {
+		statesText.text = "Elliptically\nPolarised\nLight";
+	}
+	
+	currentColor = WLtoColor(currentWL);
+	
+	// Update html
+	
+	currentpxWL = WLtopxWL(currentWL);
+	WLval.innerHTML = currentWL;
+	speedFactorVal.innerHTML = speedFactor;
+	pemFactorVal.innerHTML = pemFactor;
+	tourText.innerHTML = tourTexts[tourStep];
+	
+	// Create beams
+	
+	// Additional beam at Prism 1 illustrating baffles
+	
+	var A2ryBeamOffset = -100; // Offset in nm
+	var A2ryBeamWL = currentWL + A2ryBeamOffset;
+	var A2ryBeamPos = (maxWL - minWL) / 2 + A2ryBeamWL - currentWL;
+	var A2ryBeamHeight = ((A2ryBeamPos - minWL) / (maxWL - minWL) - 0.5) * (mirror2RainbowHeight + 5); // Additional offset just estimated!
+	var A2ryBeamDX = Math.sin(7.5 / 180 * Math.PI) * A2ryBeamHeight;
+	var A2ryBeamDY = Math.cos(7.5 / 180 * Math.PI) * A2ryBeamHeight;
+	var A2ryBeamColor = WLtoColor(A2ryBeamWL - 300); // Additional offset just estimated!
+	
+	var A3ryBeamOffset = A2ryBeamOffset; // Offset in nm
+	var A3ryBeamWL = currentWL + A3ryBeamOffset;
+	var A3ryBeamPos = (maxWL - minWL) / 2 + A3ryBeamWL - currentWL;
+	var A3ryBeamHeight = ((A3ryBeamPos - minWL) / (maxWL - minWL) - 0.5) * (slit2RainbowHeight - 3); // Additional offset just estimated!
+	var A3ryBeamDX = Math.sin(7.5 / 180 * Math.PI) * A3ryBeamHeight;
+	var A3ryBeamDY = Math.cos(7.5 / 180 * Math.PI) * A3ryBeamHeight;
+	var A3ryBeamColor = A2ryBeamColor;
+	
+	// Additional beam at Prism 1 illustrating different polarisation
+	
+	var B2ryBeamOffset = 400; // Offset in nm
+	var B2ryBeamWL = currentWL + B2ryBeamOffset;
+	var B2ryBeamPos = (maxWL - minWL) / 2 + B2ryBeamWL - currentWL;
+	var B2ryBeamHeight = ((B2ryBeamPos - minWL) / (maxWL - minWL) - 0.5) * (mirror2RainbowHeight + 5); // Additional offset just estimated!
+	var B2ryBeamDX = Math.sin(7.5 / 180 * Math.PI) * B2ryBeamHeight;
+	var B2ryBeamDY = Math.cos(7.5 / 180 * Math.PI) * B2ryBeamHeight;
+	var B2ryBeamColor = WLtoColor(B2ryBeamWL - 100); // Additional offset just estimated!
+	
+	var B3ryBeamOffset = B2ryBeamOffset; // Offset in nm
+	var B3ryBeamWL = currentWL + B3ryBeamOffset;
+	var B3ryBeamPos = (maxWL - minWL) / 2 + B3ryBeamWL - currentWL;
+	var B3ryBeamHeight = ((B3ryBeamPos - minWL) / (maxWL - minWL) - 0.5) * (slit2RainbowHeight - 3); // Additional offset just estimated!
+	var B3ryBeamDX = Math.sin(7.5 / 180 * Math.PI) * B3ryBeamHeight;
+	var B3ryBeamDY = Math.cos(7.5 / 180 * Math.PI) * B3ryBeamHeight;
+	var B3ryBeamColor = B2ryBeamColor;
+	
+	// Draw white rectangle as background of PEM
+	
+	ctx.fillStyle = "white";
+	ctx.beginPath();
+	ctx.fillRect(1361.5 - mainSVGwidth / 2, 483 - mainSVGheight / 2, 28.5, 158);
+	ctx.closePath();
+	ctx.fill();
+	
+	beam1 = new Beam(idx = 1, mirror4X, mirror4Y, detectorX, detectorY, sample = sample1, pem = pem1, speed = speedPXperS, wavelength = currentWL, dash = [], color = currentColor);
+	
+	if (lampOn && (shutterStatus == "open" || shutterStatus == "idle")) {
+		
+		beam1.draw();
+		
+		exitSlitDeflection = getDeflection(2);
+
+		beam1_vert = new Beam(idx = 101, mirror4X, mirror4Y - m4Deflection, slit3.posX, slit3.posY - exitSlitDeflection, sample = sample1, pem = pem1, speed = speedPXperS, wavelength = B2ryBeamWL, dash = [2, 2], color = B2ryBeamColor);
+		beam1_vert.draw();
+		
+		beam2 = new Beam(idx = 2, prism2X, prism2Y, mirror4X, mirror4Y, sample = 0, pem = 0, speed = speedPXperS, wavelength = currentWL, dash = [], color = currentColor);
+		beam2.draw();
+		
+		m4Deflection = getDeflection(1);
+		
+		beam2_vert = new Beam(idx = 201, prism2X, prism2Y, mirror4X, mirror4Y - m4Deflection, sample = 0, pem = 0, speed = speedPXperS, wavelength = B2ryBeamWL, dash = [2, 2], color = B2ryBeamColor);
+		beam2_vert.draw();
+		
+		beam3 = new Beam(idx = 3, mirror3X, mirror3Y, prism2X, prism2Y, sample = 0, pem = 0, speed = speedPXperS, wavelength = currentWL, dash = [], color = currentColor);
+		beam3.draw();
+		
+		beam4 = new Beam(idx = 4, mirror2X, mirror2Y, mirror3X, mirror3Y, sample = 0, pem = 0, speed = speedPXperS, wavelength = currentWL, dash = [], color = currentColor);
+		beam4.draw();
+		
+		beam5 = new Beam(idx = 5, prism1X, prism1Y, mirror2X, mirror2Y, sample = 0, pem = 0, speed = speedPXperS, wavelength = currentWL, dash = [], color = currentColor);
+		beam5.draw();
+		
+		if (tourStep == 11) {
+		
+			beam90 = new Beam(idx = 90, prism1X, prism1Y, mirror2X - A2ryBeamDX, mirror2Y - A2ryBeamDY, sample = 0, pem = 0, speed = speedPXperS, wavelength = currentWL, dash = [], color = A2ryBeamColor, linewidth = 1, linecap = "butt", context = fctx, contrast = true, gradient = [1, 1]);
+			beam90.draw();
+			
+			beam91 = new Beam(idx = 91, mirror2X - A2ryBeamDX, mirror2Y - A2ryBeamDY, 1093 - mainSVGwidth / 2, 467 - mainSVGheight / 2, sample = 0, pem = 0, speed = speedPXperS, wavelength = currentWL, dash = [], color = A3ryBeamColor, linewidth = 1, linecap = "butt", context = fctx, contrast = true, gradient = [1, 0.8]);
+			beam91.draw();
+			
+			beam92 = new Beam(idx = 92, 1093 - mainSVGwidth / 2, 467 - mainSVGheight / 2, 1104 - mainSVGwidth / 2, 480 - mainSVGheight / 2, sample = 0, pem = 0, speed = speedPXperS, wavelength = currentWL, dash = [], color = A3ryBeamColor, linewidth = 1, linecap = "butt", context = fctx, contrast = true, gradient = [0.8, 0.6]);
+			beam92.draw();
+			
+			beam93 = new Beam(idx = 93, 1104 - mainSVGwidth / 2, 480 - mainSVGheight / 2, 1082 - mainSVGwidth / 2, 483 - mainSVGheight / 2, sample = 0, pem = 0, speed = speedPXperS, wavelength = currentWL, dash = [], color = A3ryBeamColor, linewidth = 1, linecap = "butt", context = fctx, contrast = true, gradient = [0.6, 0.4]);
+			beam93.draw();
+			
+			beam94 = new Beam(idx = 94, 1082 - mainSVGwidth / 2, 483 - mainSVGheight / 2, 1092 - mainSVGwidth / 2, 497 - mainSVGheight / 2, sample = 0, pem = 0, speed = speedPXperS, wavelength = currentWL, dash = [], color = A3ryBeamColor, linewidth = 1, linecap = "butt", context = fctx, contrast = true, gradient = [0.4, 0.2]);
+			beam94.draw();
+			
+			beam95 = new Beam(idx = 95, 1092 - mainSVGwidth / 2, 497 - mainSVGheight / 2, 1070 - mainSVGwidth / 2, 500 - mainSVGheight / 2, sample = 0, pem = 0, speed = speedPXperS, wavelength = currentWL, dash = [], color = A3ryBeamColor, linewidth = 1, linecap = "butt", context = fctx, contrast = true, gradient = [0.2, 0]);
+			beam95.draw();
+			
+		}
+		
+		newCoords = extrapolateLine(mirror2X - B2ryBeamDX, mirror2Y - B2ryBeamDY, slit2X - B3ryBeamDX, slit2Y - B3ryBeamDY, -7.5, mode = "end");
+		
+		if (tourStep == 13) {
+			
+			rndmWLs = [currentWL, 450, 600, 750];
+			rndmColors = rndmWLs.map(WL => WLtoColor(WL));
+			
+			// Polarisation of lamp light
+			
+			beam60 = new Beam(idx = 60, mirror1X, mirror1Y, prism1X, prism1Y, sample = 0, pem = 0, speed = speedPXperS, wavelength = rndmWLs[0], dash = [], color = "none");
+			beam60.draw();
+			
+			beam61 = new Beam(idx = 61, mirror1X, mirror1Y, prism1X, prism1Y, sample = 0, pem = 0, speed = speedPXperS, wavelength = rndmWLs[1], dash = [], color = "none");
+			beam61.draw();
+			
+			beam62 = new Beam(idx = 62, mirror1X, mirror1Y, prism1X, prism1Y, sample = 0, pem = 0, speed = speedPXperS, wavelength = rndmWLs[2], dash = [], color = "none");
+			beam62.draw();
+			
+			beam63 = new Beam(idx = 63, mirror1X, mirror1Y, prism1X, prism1Y, sample = 0, pem = 0, speed = speedPXperS, wavelength = rndmWLs[3], dash = [], color = "none");
+			beam63.draw();
+			
+			beam70 = new Beam(idx = 70, lampMirrorX, lampMirrorY, mirror1X, mirror1Y, sample = 0, pem = 0, speed = speedPXperS, wavelength = rndmWLs[0], dash = [], color = "none");
+			beam70.draw();
+			
+			beam71 = new Beam(idx = 71, lampMirrorX, lampMirrorY, mirror1X, mirror1Y, sample = 0, pem = 0, speed = speedPXperS, wavelength = rndmWLs[1], dash = [], color = "none");
+			beam71.draw();
+			
+			beam72 = new Beam(idx = 72, lampMirrorX, lampMirrorY, mirror1X, mirror1Y, sample = 0, pem = 0, speed = speedPXperS, wavelength = rndmWLs[2], dash = [], color = "none");
+			beam72.draw();
+			
+			beam73 = new Beam(idx = 73, lampMirrorX, lampMirrorY, mirror1X, mirror1Y, sample = 0, pem = 0, speed = speedPXperS, wavelength = rndmWLs[3], dash = [], color = "none");
+			beam73.draw();
+			
+			beam80 = new Beam(idx = 80, lampX, lampY, lampMirrorX, lampMirrorY, sample = 0, pem = 0, speed = speedPXperS, wavelength = rndmWLs[0], dash = [], color = "none");
+			beam80.draw();
+			
+			beam81 = new Beam(idx = 81, lampX, lampY, lampMirrorX, lampMirrorY, sample = 0, pem = 0, speed = speedPXperS, wavelength = rndmWLs[1], dash = [], color = "none");
+			beam81.draw();
+			
+			beam82 = new Beam(idx = 82, lampX, lampY, lampMirrorX, lampMirrorY, sample = 0, pem = 0, speed = speedPXperS, wavelength = rndmWLs[2], dash = [], color = "none");
+			beam82.draw();
+			
+			beam83 = new Beam(idx = 83, lampX, lampY, lampMirrorX, lampMirrorY, sample = 0, pem = 0, speed = speedPXperS, wavelength = rndmWLs[3], dash = [], color = "none");
+			beam83.draw();
+		}
+		
+		if (tourStep == 14) {
+			
+			// Excluded beam
+			
+			beam9 = new Beam(idx = 9, prism1X, prism1Y, mirror2X - B2ryBeamDX, mirror2Y - B2ryBeamDY, sample = 0, pem = 0, speed = speedPXperS, wavelength = B2ryBeamWL, dash = [], color = B2ryBeamColor, linewidth = 1, linecap = "butt", context = fctx, contrast = true);
+			beam9.draw();
+			
+			beam10 = new Beam(idx = 10, mirror2X - B2ryBeamDX, mirror2Y - B2ryBeamDY, newCoords[0], newCoords[1], sample = 0, pem = 0, speed = speedPXperS, wavelength = B3ryBeamWL, dash = [], color = B3ryBeamColor, linewidth = 1, linecap = "butt", context = fctx, contrast = true);
+			beam10.draw();
+			
+		}
+		
+		if (tourStep == 15 || tourStep == 16) {
+			
+			// Unwanted wavelength and polarisation
+			
+			beam9 = new Beam(idx = 9, mirror3X, mirror3Y, prism2X, prism2Y, sample = 0, pem = 0, speed = speedPXperS, wavelength = B2ryBeamWL, dash = [2, 2], color = B2ryBeamColor);
+			beam9.draw();
+			
+			beam10 = new Beam(idx = 10, mirror2X, mirror2Y, mirror3X, mirror3Y, sample = 0, pem = 0, speed = speedPXperS, wavelength = B2ryBeamWL, dash = [2, 2], color = B2ryBeamColor);
+			beam10.draw();
+			
+			beam11 = new Beam(idx = 11, prism1X, prism1Y, mirror2X, mirror2Y, sample = 0, pem = 0, speed = speedPXperS, wavelength = B2ryBeamWL, dash = [2, 2], color = B2ryBeamColor);
+			beam11.draw();			
+		}
+		
+		if (tourStep == 20) {
+			
+			// Simple depiction: only left- and right-handed wave segments with gaps
+			
+			// Left-handed CPL
+			
+			beam_simple_left_CPL = new Beam(idx = 9, pemX + pem1.width / 2, pemY, detectorX, detectorY, sample = sample1, pem = 0, speed = speedPXperS, wavelength = currentWL, dash = [], color = currentColor);
+			beam_simple_left_CPL.draw();
+			
+			// Right-handed CPL
+			
+			beam_simple_right_CPL = new Beam(idx = 10, pemX + pem1.width / 2, pemY, detectorX, detectorY, sample = sample1, pem = 0, speed = speedPXperS, wavelength = currentWL, dash = [], color = currentColor);
+			
+			// Beam before PEM
+			
+			beam_simple = new Beam(idx = 11, mirror4X, mirror4Y, pemX - pem1.width / 2, pemY, sample = 0, pem = 0, speed = speedPXperS, wavelength = currentWL, dash = [], color = currentColor);
+		}
+		
+		// Two yellow beams before first prism
+		
+		beam6 = new Beam(idx = 6, mirror1X, mirror1Y, prism1X, prism1Y, sample = 0, pem = 0, speed = speedPXperS, wavelength = currentWL, dash = [], color = [60, 80, 60, 1], linewidth = gap, linecap = "square", context = lctx);
+		beam6.draw();
+		
+		beam7 = new Beam(idx = 7, slit1X - slitThickness, slit1Y, mirror1X, mirror1Y, sample = 0, pem = 0, speed = speedPXperS, wavelength = currentWL, dash = [], color = [60, 80, 60, 1], linewidth = gap);
+		beam7.draw();
+	
+	}
+		
+	// Draw segments
+	
+		if (touchControl == false && magnifiercanvas.parentNode.querySelector(":hover") == canvas) {
+			x = cursorX;
+			y = cursorY;
+		} else if (touchControl == true && touchSingleDrag == true) {
+			x = touchSingleDragCoords.x;
+			y = touchSingleDragCoords.y;
+		}
+	
+	if (magnifierOn == true && ((touchControl == false && magnifiercanvas.parentNode.querySelector(":hover") == canvas) || (touchControl == true && touchDoubleDrag == false && touchSingleDrag == true))) { // Commented for debugging purposes
+	//if (true) {
+		
+		if (lampOn && (shutterStatus == "open" || shutterStatus == "idle")) {
+			if (tourStep != 20) {
+				segmentLength = beam1.length();
+			
+				segment1_1 = new Segment(beam = beam1, length = segmentLength, cyclelength = 0, position = -segmentLength, phasediff = 0, ampY = 1, ampZ = 1, roll = -45, color = currentColor);
+				segment1_1.draw();
+				segment1_2 = new Segment(beam = beam1, length = segmentLength, cyclelength = 0, position = 0, phasediff = 0, ampY = 1, ampZ = 1, roll = -45, color = currentColor);
+				segment1_2.draw();
+			}
+			
+			segmentLength = beam2.length();
+			
+			segment2_1 = new Segment(beam = beam2, length = segmentLength, cyclelength = 0, position = -segmentLength, phasediff = 0, ampY = 1, ampZ = 1, roll = -45, color = currentColor);
+			segment2_1.draw();
+			segment2_2 = new Segment(beam = beam2, length = segmentLength, cyclelength = 0, position = 0, phasediff = 0, ampY = 1, ampZ = 1, roll = -45, color = currentColor);
+			segment2_2.draw();
+			
+			segmentLength = beam3.length();
+			
+			segment3_1 = new Segment(beam = beam3, length = segmentLength, cyclelength = 0, position = -segmentLength, phasediff = 0, ampY = 1, ampZ = 1, roll = -45, color = currentColor);
+			segment3_1.draw();
+			segment3_2 = new Segment(beam = beam3, length = segmentLength, cyclelength = 0, position = 0, phasediff = 0, ampY = 1, ampZ = 1, roll = -45, color = currentColor);
+			segment3_2.draw();
+			
+			segmentLength = beam4.length();
+			
+			segment4_1 = new Segment(beam = beam4, length = segmentLength, cyclelength = 0, position = -segmentLength, phasediff = 0, ampY = 1, ampZ = 1, roll = -45, color = currentColor);
+			segment4_1.draw();
+			segment4_2 = new Segment(beam = beam4, length = segmentLength, cyclelength = 0, position = 0, phasediff = 0, ampY = 1, ampZ = 1, roll = -45, color = currentColor);
+			segment4_2.draw();
+			
+			segmentLength = beam5.length();
+			
+			segment5_1 = new Segment(beam = beam5, length = segmentLength, cyclelength = 0, position = -segmentLength, phasediff = 0, ampY = 1, ampZ = 1, roll = -45, color = currentColor);
+			segment5_1.draw();
+			segment5_2 = new Segment(beam = beam5, length = segmentLength, cyclelength = 0, position = 0, phasediff = 0, ampY = 1, ampZ = 1, roll = -45, color = currentColor);
+			segment5_2.draw();
+			
+			if (tourStep == 13) {
+
+				// Lamp beams
+				
+				segmentLength = beam60.length();
+			
+				segment60_1 = new Segment(beam = beam60, length = segmentLength, cyclelength = 0, position = -segmentLength, phasediff = 0, ampY = 1, ampZ = 1, roll = rndmRolls[0], color = rndmColors[0]);
+				segment60_1.draw();
+				segment60_2 = new Segment(beam = beam60, length = segmentLength, cyclelength = 0, position = 0, phasediff = 0, ampY = 1, ampZ = 1, roll = rndmRolls[0], color = rndmColors[0]);
+				segment60_2.draw();
+				
+				segmentLength = beam61.length();
+			
+				segment61_1 = new Segment(beam = beam61, length = segmentLength, cyclelength = 0, position = -segmentLength, phasediff = 0, ampY = 1, ampZ = 1, roll = rndmRolls[1], color = rndmColors[1]);
+				segment61_1.draw();
+				segment61_2 = new Segment(beam = beam61, length = segmentLength, cyclelength = 0, position = 0, phasediff = 0, ampY = 1, ampZ = 1, roll = rndmRolls[1], color = rndmColors[1]);
+				segment61_2.draw();
+				
+				segmentLength = beam62.length();
+			
+				segment62_1 = new Segment(beam = beam62, length = segmentLength, cyclelength = 0, position = -segmentLength, phasediff = 0, ampY = 1, ampZ = 1, roll = rndmRolls[2], color = rndmColors[2]);
+				segment62_1.draw();
+				segment62_2 = new Segment(beam = beam62, length = segmentLength, cyclelength = 0, position = 0, phasediff = 0, ampY = 1, ampZ = 1, roll = rndmRolls[2], color = rndmColors[2]);
+				segment62_2.draw();
+				
+				segmentLength = beam63.length();
+			
+				segment63_1 = new Segment(beam = beam63, length = segmentLength, cyclelength = 0, position = -segmentLength, phasediff = 0, ampY = 1, ampZ = 1, roll = rndmRolls[3], color = rndmColors[3]);
+				segment63_1.draw();
+				segment63_2 = new Segment(beam = beam63, length = segmentLength, cyclelength = 0, position = 0, phasediff = 0, ampY = 1, ampZ = 1, roll = rndmRolls[3], color = rndmColors[3]);
+				segment63_2.draw();
+				
+				segmentLength = beam70.length();
+				
+				segment70_1 = new Segment(beam = beam70, length = segmentLength, cyclelength = 0, position = -segmentLength, phasediff = 0, ampY = 1, ampZ = 1, roll = rndmRolls[0], color = rndmColors[0]);
+				segment70_1.draw();
+				segment70_2 = new Segment(beam = beam70, length = segmentLength, cyclelength = 0, position = 0, phasediff = 0, ampY = 1, ampZ = 1, roll = rndmRolls[0], color = rndmColors[0]);
+				segment70_2.draw();
+				
+				segmentLength = beam71.length();
+				
+				segment71_1 = new Segment(beam = beam71, length = segmentLength, cyclelength = 0, position = -segmentLength, phasediff = 0, ampY = 1, ampZ = 1, roll = rndmRolls[1], color = rndmColors[1]);
+				segment71_1.draw();
+				segment71_2 = new Segment(beam = beam71, length = segmentLength, cyclelength = 0, position = 0, phasediff = 0, ampY = 1, ampZ = 1, roll = rndmRolls[1], color = rndmColors[1]);
+				segment71_2.draw();
+				
+				segmentLength = beam72.length();
+				
+				segment72_1 = new Segment(beam = beam72, length = segmentLength, cyclelength = 0, position = -segmentLength, phasediff = 0, ampY = 1, ampZ = 1, roll = rndmRolls[2], color = rndmColors[2]);
+				segment72_1.draw();
+				segment72_2 = new Segment(beam = beam72, length = segmentLength, cyclelength = 0, position = 0, phasediff = 0, ampY = 1, ampZ = 1, roll = rndmRolls[2], color = rndmColors[2]);
+				segment72_2.draw();
+				
+				segmentLength = beam73.length();
+				
+				segment73_1 = new Segment(beam = beam73, length = segmentLength, cyclelength = 0, position = -segmentLength, phasediff = 0, ampY = 1, ampZ = 1, roll = rndmRolls[3], color = rndmColors[3]);
+				segment73_1.draw();
+				segment73_2 = new Segment(beam = beam73, length = segmentLength, cyclelength = 0, position = 0, phasediff = 0, ampY = 1, ampZ = 1, roll = rndmRolls[3], color = rndmColors[3]);
+				segment73_2.draw();
+				
+				segmentLength = beam80.length();
+				
+				segment80_1 = new Segment(beam = beam80, length = 2 * segmentLength, cyclelength = 0, position = -2 * segmentLength, phasediff = 0, ampY = 1, ampZ = 1, roll = rndmRolls[0], color = rndmColors[0]);
+				segment80_1.draw();
+				segment80_2 = new Segment(beam = beam80, length = 2 * segmentLength, cyclelength = 0, position = 0, phasediff = 0, ampY = 1, ampZ = 1, roll = rndmRolls[0], color = rndmColors[0]);
+				segment80_2.draw();
+				
+				segmentLength = beam81.length();
+				
+				segment81_1 = new Segment(beam = beam81, length = 2 * segmentLength, cyclelength = 0, position = -2 * segmentLength, phasediff = 0, ampY = 1, ampZ = 1, roll = rndmRolls[1], color = rndmColors[1]);
+				segment81_1.draw();
+				segment81_2 = new Segment(beam = beam81, length = 2 * segmentLength, cyclelength = 0, position = 0, phasediff = 0, ampY = 1, ampZ = 1, roll = rndmRolls[1], color = rndmColors[1]);
+				segment81_2.draw();
+				
+				segmentLength = beam82.length();
+				
+				segment82_1 = new Segment(beam = beam82, length = 2 * segmentLength, cyclelength = 0, position = -2 * segmentLength, phasediff = 0, ampY = 1, ampZ = 1, roll = rndmRolls[2], color = rndmColors[2]);
+				segment82_1.draw();
+				segment82_2 = new Segment(beam = beam82, length = 2 * segmentLength, cyclelength = 0, position = 0, phasediff = 0, ampY = 1, ampZ = 1, roll = rndmRolls[2], color = rndmColors[2]);
+				segment82_2.draw();
+				
+				segmentLength = beam83.length();
+				
+				segment83_1 = new Segment(beam = beam83, length = 2 * segmentLength, cyclelength = 0, position = -2 * segmentLength, phasediff = 0, ampY = 1, ampZ = 1, roll = rndmRolls[3], color = rndmColors[3]);
+				segment83_1.draw();
+				segment83_2 = new Segment(beam = beam83, length = 2 * segmentLength, cyclelength = 0, position = 0, phasediff = 0, ampY = 1, ampZ = 1, roll = rndmRolls[3], color = rndmColors[3]);
+				segment83_2.draw();
+			}
+			
+			if (tourStep == 14) {
+
+				// Excluded beam
+				
+				segmentLength = beam9.length();
+				
+				segment9_1 = new Segment(beam = beam9, length = segmentLength, cyclelength = 0, position = -segmentLength, phasediff = 0, ampY = 1, ampZ = 1, roll = -45, color = B2ryBeamColor);
+				segment9_1.draw();
+				segment9_2 = new Segment(beam = beam9, length = segmentLength, cyclelength = 0, position = 0, phasediff = 0, ampY = 1, ampZ = 1, roll = -45, color = B2ryBeamColor);
+				segment9_2.draw();
+				
+				segmentLength = beam10.length();
+				
+				segment10_1 = new Segment(beam = beam10, length = segmentLength, cyclelength = 0, position = -segmentLength, phasediff = 0, ampY = 1, ampZ = 1, roll = -45, color = B3ryBeamColor);
+				segment10_1.draw();
+				segment10_2 = new Segment(beam = beam10, length = segmentLength, cyclelength = 0, position = 0, phasediff = 0, ampY = 1, ampZ = 1, roll = -45, color = B3ryBeamColor);
+				segment10_2.draw();
+			}
+			
+			if (tourStep == 15 || tourStep == 16) {
+				
+				// Unwanted wavelength and polarisation
+				
+				segmentLength = beam9.length();
+				
+				segment9_1 = new Segment(beam = beam9, length = segmentLength, cyclelength = 0, position = -segmentLength, phasediff = 0, ampY = 0, ampZ = 1, roll = 0, color = B2ryBeamColor, gradient = "horizontal", context = b2ctx);
+				segment9_1.draw();
+				segment9_2 = new Segment(beam = beam9, length = segmentLength, cyclelength = 0, position = 0, phasediff = 0, ampY = 0, ampZ = 1, roll = 0, color = B2ryBeamColor, gradient = "horizontal", context = b2ctx);
+				segment9_2.draw();
+				
+				segmentLength = beam10.length();
+				
+				segment10_1 = new Segment(beam = beam10, length = segmentLength, cyclelength = 0, position = -segmentLength, phasediff = 0, ampY = 0, ampZ = 1, roll = 0, color = B3ryBeamColor, gradient = "horizontal", context = b2ctx);
+				segment10_1.draw();
+				segment10_2 = new Segment(beam = beam10, length = segmentLength, cyclelength = 0, position = 0, phasediff = 0, ampY = 0, ampZ = 1, roll = 0, color = B3ryBeamColor, gradient = "horizontal", context = b2ctx);
+				segment10_2.draw();
+				
+				segmentLength = beam11.length();
+				
+				segment11_1 = new Segment(beam = beam11, length = segmentLength, cyclelength = 0, position = -segmentLength, phasediff = 0, ampY = 0, ampZ = 1, roll = 0, color = B3ryBeamColor, gradient = "horizontal", context = b2ctx);
+				segment11_1.draw();
+				segment11_2 = new Segment(beam = beam11, length = segmentLength, cyclelength = 0, position = 0, phasediff = 0, ampY = 0, ampZ = 1, roll = 0, color = B3ryBeamColor, gradient = "horizontal", context = b2ctx);
+				segment11_2.draw();
+				
+				segmentLength = beam1_vert.length();
+				
+				segment101_1 = new Segment(beam = beam1_vert, length = segmentLength, cyclelength = 0, position = -segmentLength, phasediff = 0, ampY = 0, ampZ = 1, roll = 0, color = B3ryBeamColor, gradient = "horizontal", context = b2ctx);
+				segment101_1.draw();
+				segment101_2 = new Segment(beam = beam1_vert, length = segmentLength, cyclelength = 0, position = 0, phasediff = 0, ampY = 0, ampZ = 1, roll = 0, color = B3ryBeamColor, gradient = "horizontal", context = b2ctx);
+				segment101_2.draw();
+				
+				segmentLength = beam2_vert.length();
+				
+				segment201_1 = new Segment(beam = beam2_vert, length = segmentLength, cyclelength = 0, position = -segmentLength, phasediff = 0, ampY = 0, ampZ = 1, roll = 0, color = B3ryBeamColor, gradient = "horizontal", context = b2ctx);
+				segment201_1.draw();
+				segment201_2 = new Segment(beam = beam2_vert, length = segmentLength, cyclelength = 0, position = 0, phasediff = 0, ampY = 0, ampZ = 1, roll = 0, color = B3ryBeamColor, gradient = "horizontal", context = b2ctx);
+				segment201_2.draw();
+			}
+			
+			if (tourStep == 20) {
+				segmentLength = beam_simple.length();
+				
+				segment9_1 = new Segment(beam = beam_simple, length = segmentLength, cyclelength = 0, position = -segmentLength, phasediff = 0, ampY = 1, ampZ = 1, roll = -45, color = currentColor);
+				segment9_1.draw();
+				segment9_2 = new Segment(beam = beam_simple, length = segmentLength, cyclelength = 0, position = 0, phasediff = 0, ampY = 1, ampZ = 1, roll = -45, color = currentColor);
+				segment9_2.draw();
+				
+				segmentLength = 24 * currentpxWL;
+			
+				segment10_1 = new Segment(beam = beam_simple_right_CPL, length = segmentLength / 6 - currentpxWL, cyclelength = segmentLength, position = -4 * currentpxWL, phasediff = -0.5, ampY = 1, ampZ = 1, roll = 0, color = currentColor, gradient = "horizontal", context = b2ctx);
+				segment10_1.draw();
+			
+				segment10_2 = new Segment(beam = beam_simple_right_CPL, length = segmentLength / 6 - currentpxWL, cyclelength = segmentLength, position = -20 * currentpxWL, phasediff = -0.5, ampY = 1, ampZ = 1, roll = 0, color = currentColor, gradient = "horizontal", context = b2ctx);
+				segment10_2.draw();
+					
+				segment10_3 = new Segment(beam = beam_simple_right_CPL, length = segmentLength / 6 - currentpxWL, cyclelength = segmentLength, position = 4 * currentpxWL, phasediff = -0.5, ampY = 1, ampZ = 1, roll = 0, color = currentColor, gradient = "horizontal", context = b2ctx);
+				segment10_3.draw();
+			
+				segment10_4 = new Segment(beam = beam_simple_right_CPL, length = segmentLength / 6 - currentpxWL, cyclelength = segmentLength, position = -12 * currentpxWL, phasediff = -0.5, ampY = 1, ampZ = 1, roll = 0, color = currentColor, gradient = "horizontal", context = b2ctx);
+				segment10_4.draw();
+				
+				segment10_5 = new Segment(beam = beam_simple_right_CPL, length = segmentLength / 6 - currentpxWL, cyclelength = segmentLength, position = 12 * currentpxWL, phasediff = -0.5, ampY = 1, ampZ = 1, roll = 0, color = currentColor, gradient = "horizontal", context = b2ctx);
+				segment10_5.draw();
+			
+				segment10_6 = new Segment(beam = beam_simple_right_CPL, length = segmentLength / 6 - currentpxWL, cyclelength = segmentLength, position = -4 * currentpxWL, phasediff = -0.5, ampY = 1, ampZ = 1, roll = 0, color = currentColor, gradient = "horizontal", context = b2ctx);
+				segment10_6.draw();
+			
+				segment10_7 = new Segment(beam = beam_simple_right_CPL, length = segmentLength / 6 - currentpxWL, cyclelength = segmentLength, position = 20 * currentpxWL, phasediff = -0.5, ampY = 1, ampZ = 1, roll = 0, color = currentColor, gradient = "horizontal", context = b2ctx);
+				segment10_7.draw();
+			
+				segment10_8 = new Segment(beam = beam_simple_right_CPL, length = segmentLength / 6 - currentpxWL, cyclelength = segmentLength, position = 4 * currentpxWL, phasediff = -0.5, ampY = 1, ampZ = 1, roll = 0, color = currentColor, gradient = "horizontal", context = b2ctx);
+				segment10_8.draw();
+			
+				segmentLength = 24 * currentpxWL;
+					
+				segment11_1 = new Segment(beam = beam_simple_left_CPL, length = segmentLength / 6 - currentpxWL, cyclelength = segmentLength, position = -8 * currentpxWL, phasediff = 0.5, ampY = 1, ampZ = 1, roll = 0, color = currentColor, gradient = "horizontal", context = b2ctx);
+				segment11_1.draw();
+				segment11_2 = new Segment(beam = beam_simple_left_CPL, length = segmentLength / 6 - currentpxWL, cyclelength = segmentLength, position = -24 * currentpxWL, phasediff = 0.5, ampY = 1, ampZ = 1, roll = 0, color = currentColor, gradient = "horizontal", context = b2ctx);
+				segment11_2.draw();
+				
+				segment11_3 = new Segment(beam = beam_simple_left_CPL, length = segmentLength / 6 - currentpxWL, cyclelength = segmentLength, position = 0 * currentpxWL, phasediff = 0.5, ampY = 1, ampZ = 1, roll = 0, color = currentColor, gradient = "horizontal", context = b2ctx);
+				segment11_3.draw();
+			
+				segment11_4 = new Segment(beam = beam_simple_left_CPL, length = segmentLength / 6 - currentpxWL, cyclelength = segmentLength, position = -16 * currentpxWL, phasediff = 0.5, ampY = 1, ampZ = 1, roll = 0, color = currentColor, gradient = "horizontal", context = b2ctx);
+				segment11_4.draw();
+				
+				segment11_5 = new Segment(beam = beam_simple_left_CPL, length = segmentLength / 6 - currentpxWL, cyclelength = segmentLength, position = 8 * currentpxWL, phasediff = 0.5, ampY = 1, ampZ = 1, roll = 0, color = currentColor, gradient = "horizontal", context = b2ctx);
+				segment11_5.draw();
+			
+				segment11_6 = new Segment(beam = beam_simple_left_CPL, length = segmentLength / 6 - currentpxWL, cyclelength = segmentLength, position = -8 * currentpxWL, phasediff = 0.5, ampY = 1, ampZ = 1, roll = 0, color = currentColor, gradient = "horizontal", context = b2ctx);
+				segment11_6.draw();
+				
+				segment11_7 = new Segment(beam = beam_simple_left_CPL, length = segmentLength / 6 - currentpxWL, cyclelength = segmentLength, position = 16 * currentpxWL, phasediff = 0.5, ampY = 1, ampZ = 1, roll = 0, color = currentColor, gradient = "horizontal", context = b2ctx);
+				segment11_7.draw();
+			
+				segment11_8 = new Segment(beam = beam_simple_left_CPL, length = segmentLength / 6 - currentpxWL, cyclelength = segmentLength, position = 0 * currentpxWL, phasediff = 0.5, ampY = 1, ampZ = 1, roll = 0, color = currentColor, gradient = "horizontal", context = b2ctx);
+				segment11_8.draw();
+			}
+		
+		}
+	
+	}
+	
+	// Draw components
+	
+	for (const [index, component] of components.entries()) {
+		if (focus.includes(component)) {
+			fctx.drawImage(eval(component + "SVG"), -mainSVGwidth / 2, -mainSVGheight / 2);
+		} else {
+			octx.drawImage(eval(component + "SVG"), -mainSVGwidth / 2, -mainSVGheight / 2);
+		}
+	}
+	
+	// Detector highlight
+	
+	// Accounting for delay due to distance between PEM and Detector here (would be negligible at real light speed)
+	var timePemToDetector = (detectorX - pemX) / speedPXperS;
+	var delayedPEMmod = Math.sin(((t / 1000 - timePemToDetector) / timePerPemCycle) * 2 * Math.PI) * maxPEMshift;
+	
+	if (tourStep >= 25 && detectorHighlighted == 0 && Math.abs(delayedPEMmod) > 0.245) {
+		detectorHighlighted = 1;
+	} else if (tourStep >= 25 && detectorHighlighted > 0) {
+		fctx.globalAlpha = detectorHighlighted;
+		fctx.drawImage(DetectorHighlightSVG, -mainSVGwidth / 2, -mainSVGheight / 2);
+		fctx.globalAlpha = 1;
+		detectorHighlighted -= 0.2;
+	} else {
+		detectorHighlighted = 0;
+	}
+	
+	// Draw walls
+	
+	octx.drawImage(wallsSVG, -mainSVGwidth / 2, -mainSVGheight / 2);
+	
+	// Draw sample and PEM
+
+	if (sampleOn == true) {
+	
+		sample1.draw(beam1);
+		
+	}
+	
+	pem1.draw(beam1);
+	
+	// Draw auxilliary text
+	
+	if (tourStep >= 22) {
+		modulationText.draw();
+		statesText.draw();
+	}
+	
+	// Draw particles
+	var c, j, len, results;
+	if ((purgeStatus == "off" || purgeStatus == "started") && particles) {
+		results = [];
+		for (j = 0, len = particles.length; j < len; j++) {
+			c = particles[j];
+			results.push(c.draw());
+		}
+	}
+	
+	if (purgeStatus == "started") {
+		purgeCounter += 0.02;
+		for (j = 0, len = particles.length; j < len; j++) {
+			particles[j].vx += purgeCounter ** 2;
+		}
+		if (purgeCounter >= 10) {
+			purgeStatus = "on";
+			purgeCounter = 0;
+		}
+	}
+	
+	// Draw semi-transparent rectangle
+	
+	if (focus != "none" && focus != "all") {
+		sctx.fillStyle = "rgba(255,255,255,0.5)";
+		sctx.beginPath();
+		sctx.fillRect(-mainSVGwidth / 2, -mainSVGheight / 2, mainSVGwidth, mainSVGheight);
+		sctx.closePath();
+		sctx.fill();
+	}
+	
+	requestAnimationFrame(animation);
+}
+
+function generateRainbow(WL, BW, reverse = false, linear = true) {
+	var currentWL, currentHue, currentSaturation, currentLight, currentAlpha, currentPos, factor;
+	var predefinedHues = [0, 60, 120, 180, 240, 300]; // red, yellow, green, cyan, blue, pink
+	var predefinedWLs = []
+	var fadingFraction = 0.05;
+	var lowWL, highWL;
+	var lowValIdx, highValIdx, factor;
+	var defaultSaturation = 50;
+	var defaultLight = 50;
+	var defaultAlpha = 0.5;
+	var colorProps = ['Hues', 'Saturations', 'Lights', 'Alphas']
+	var currentProp;
+	var shift;
+	var newVals;
+	var counter;
+	var gradient = {
+	    'WLs': [],
+	    'Hues': [],
+	    'Saturations': [],
+	    'Lights': [],
+	    'Alphas': [],
+	    'Positions': []
+	}
+	// Generate wavelengths based on how margins of UV/Vis range have been defined
+	for (let i = 0; i < predefinedHues.length; i++) {
+		WLvalue = red - (red - violet) / (predefinedHues.length - 1) * i;
+		predefinedWLs.push(WLvalue);
+		gradient['WLs'].push(WLvalue);
+	}
+	// Add first wavelength
+	gradient['WLs'].unshift(1150);
+	// Add last wavelength
+	gradient['WLs'].push(163);
+	
+	// Add stops corresponding to bandwidth
+	if (BW != maxWL - minWL) {
+		lowWL = WL - BW / 2.0;
+		for (let i = gradient['WLs'].length; i >= 0; i--) {
+			if (gradient['WLs'][i] > lowWL) {
+				gradient['WLs'].splice(i + 1, 0, lowWL);
+				break;
+			}
+		}
+		highWL = WL + BW / 2.0;
+		for (let i = 0; i < gradient['WLs'].length; i++) {
+			if (gradient['WLs'][i] < highWL) {
+				gradient['WLs'].splice(i, 0, highWL);
+				break;
+			}
+		}
+	}
+	// Add stop corresponding to current wavelength
+	for (let i = 0; i < gradient['WLs'].length - 1; i++) {
+		if (gradient['WLs'][i] > WL && WL > gradient['WLs'][i + 1]) {
+			gradient['WLs'].splice(i + 1, 0, WL);
+			break;
+		}
+	}
+	// Add stop for fading
+	lowWL = WL - BW / 2.0 - BW * fadingFraction;
+	for (let i = gradient['WLs'].length; i >= 0; i--) {
+		if (gradient['WLs'][i] > lowWL) {
+			gradient['WLs'].splice(i + 1, 0, lowWL);
+			break;
+		}
+	}
+	highWL = WL + BW / 2.0 + BW * fadingFraction;
+	for (let i = 0; i < gradient['WLs'].length; i++) {
+		if (gradient['WLs'][i] < highWL) {
+			gradient['WLs'].splice(i, 0, highWL);
+			break;
+		}
+	}
+	
+	// Generate Colors of pre-defined wavelengths
+	for (let i = 0; i < gradient['WLs'].length; i++) {
+		if (predefinedWLs.includes(gradient['WLs'][i])) {
+			gradient['Hues'].push(predefinedHues[predefinedWLs.indexOf(gradient['WLs'][i])]);
+			gradient['Saturations'].push(defaultSaturation);
+			gradient['Lights'].push(defaultLight);
+		} else if (gradient['WLs'][i] >= 1150) {
+			gradient['Hues'].push(0);
+			gradient['Saturations'].push(defaultSaturation);
+			gradient['Lights'].push(defaultLight);
+		} else if (gradient['WLs'][i] <= 163) {
+			gradient['Hues'].push(300);
+			gradient['Saturations'].push(0);
+			gradient['Lights'].push(defaultLight);
+		} else {
+			gradient['Hues'].push(-1);
+			gradient['Saturations'].push(-1);
+			gradient['Lights'].push(-1);
+		}
+		if (gradient['WLs'][i] > WL - BW / 2.0 + BW * fadingFraction && gradient['WLs'][i] < WL + BW / 2.0 - BW * fadingFraction) {
+			gradient['Alphas'].push(defaultAlpha);
+		} else {
+			gradient['Alphas'].push(0);
+		}
+	}
+	
+	// Interpolate Colors of wavelengths corresponding to current wavelength and bandwidth
+	for (let h = 0; h < colorProps.length; h++) {
+		currentProp = colorProps[h]
+		newVals = [];
+		for (let i = 1; i < gradient[currentProp].length - 1; i++) {
+			if (gradient[currentProp][i] == -1) {
+				for (let j = i - 1; j >= 0; j--) {
+					if (gradient[currentProp][j] != -1) {
+						highValIdx = j;
+						break;
+					}
+				}
+				for (let j = i + 1; j < gradient['Hues'].length; j++) {
+					if (gradient[currentProp][j] != -1) {
+						lowValIdx = j;
+						break;
+					}
+				}
+				if (gradient[currentProp][lowValIdx] == gradient[currentProp][highValIdx]) {
+					newVals.push(gradient[currentProp][lowValIdx]);
+				} else {
+					factor = (gradient['WLs'][i] - gradient['WLs'][lowValIdx]) / (gradient['WLs'][highValIdx] - gradient['WLs'][lowValIdx]);
+					newVals.push(Math.round(1000 * (gradient[currentProp][lowValIdx] + (gradient[currentProp][highValIdx] - gradient[currentProp][lowValIdx]) * factor)) / 1000);
+				}
+			}
+		}
+		counter = 0;
+		for (let i = 1; i < gradient[currentProp].length - 1; i++) {
+			if (gradient[currentProp][i] == -1) {
+				gradient[currentProp][i] = newVals[counter];
+				counter += 1;
+			}
+		}
+	}
+	
+	// Generate stop positions; stops are normalised to be between 0 and 1
+	shift = 0.5 - getDispersionPos(WL, linear = linear);
+	for (let i = 0; i < gradient['WLs'].length; i++) {
+		currentWL = gradient['WLs'][i];
+		currentPos = getDispersionPos(currentWL, linear = linear) + shift;
+		gradient['Positions'].push(currentPos);
+	}
+
+	// Reverse gradient
+	if (reverse == true) {
+		for (let i = 0; i < gradient['Positions'].length; i++) {
+			gradient['Positions'][i] = 1 - gradient['Positions'][i];
+		}
+	}
+	// Round Hues and Saturations
+	for (let i = 0; i < gradient['Positions'].length; i++) {
+		gradient['Hues'][i] = Math.round(gradient['Hues'][i], 0);
+		gradient['Saturations'][i] = Math.round(gradient['Saturations'][i], 0);
+	}
+	return gradient;
+}
+
+function drawRainbowSegment(x1, y1, x2, y2, a1, a2, BW = maxWL - minWL, linear = true, context = rctx) {
+	const startArcLength = a1;
+	const endArcLength = a2;
+	const width = x2 - x1;
+	const height = y2 - y1;
+	const length = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2));
+	const extraLength = startArcLength / (endArcLength - startArcLength) * length;
+	const r = length + extraLength
+	
+	const angle = 180 / Math.PI * Math.atan2(height, width);
+	const arcAngle = 180 / Math.PI * endArcLength / r;
+	
+	const x = x1 - Math.cos(angle * Math.PI / 180) * extraLength;
+	const y = y1 - Math.sin(angle * Math.PI / 180) * extraLength;
+	
+	const startAngle = ((angle - arcAngle / 2) / 180 + 2) % 2;
+	const endAngle = ((angle + arcAngle / 2) / 180 + 2) % 2;
+	
+	var factor, reverse;
+	if (endAngle > startAngle) {
+		factor = Math.abs(endAngle / 2 - startAngle / 2);
+		reverse = true;
+	} else {
+		factor = 1 - Math.abs(endAngle / 2 - startAngle / 2);
+		reverse = false;
+	}
+	
+	var gradient;
+	var gradientProps = generateRainbow(currentWL, BW, reverse);
+	
+	var currentColor, currentPos;
+	var stops = [];
+	
+	if (a1 == a2) {
+		gradient = ctx.createLinearGradient(x1 + gap * 2 * Math.sin(angle * Math.PI / 180), y1 - gap * 2 * Math.cos(angle * Math.PI / 180), x1 + gap * 2 * Math.sin(angle * Math.PI / 180), y1 + gap * 2 * Math.cos(angle * Math.PI / 180));
+	} else {
+		gradient = ctx.createConicGradient(0, x, y);
+	}
+	
+	for (let i = 0; i < gradientProps['Positions'].length; i++) {
+		// Get HSL color strings from components
+		currentColor = "hsl(" + gradientProps['Hues'][i] + ", " + gradientProps['Saturations'][i] +"%, " + gradientProps['Lights'][i] + "%, " + gradientProps['Alphas'][i] + ")";
+		if (a1 == a2) {
+			currentPos = gradientProps['Positions'][i];
+			if (currentPos >= 0 && currentPos <= 1) {
+				stops.push({'position': currentPos, 'color': currentColor});
+			}
+		} else {
+			// Get stop position in terms of angles
+			currentPos = (startAngle / 2 + gradientProps['Positions'][i] * factor) % 1;
+			stops.push({'position': currentPos, 'color': currentColor});
+		}
+	}
+	// Sort stops so that they ascend from 0 to 1
+	stops.sort(function(a, b) {
+	    return ((a.position < b.position) ? -1 : ((a.position == b.position) ? 0 : 1));
+	});
+
+	// Add color stops to gradient
+	for (let i = 0; i < stops.length; i++) {
+		gradient.addColorStop(stops[i]['position'], stops[i]['color']);
+	}
+	
+	if (a1 == a2) {
+		context.fillStyle = gradient;
+		context.beginPath();
+		context.moveTo(x1 + a1 / 2 * Math.sin(angle * Math.PI / 180), y2 - a1 / 2 * Math.cos(angle * Math.PI / 180));
+		context.lineTo(x1 + a1 / 2 * Math.sin(angle * Math.PI / 180), y1 + a1 / 2 * Math.cos(angle * Math.PI / 180));
+		context.lineTo(x2 + a1 / 2 * Math.sin(angle * Math.PI / 180), y2 + a1 / 2 * Math.cos(angle * Math.PI / 180));
+		context.lineTo(x2 + a1 / 2 * Math.sin(angle * Math.PI / 180), y2 - a1 / 2 * Math.cos(angle * Math.PI / 180));
+		context.closePath();
+		context.strokeStyle = "transparent";
+		context.setLineDash([]);
+		context.fill();
+	} else {
+		context.fillStyle = gradient;
+		context.beginPath();
+		context.arc(x, y, r, startAngle * Math.PI, endAngle * Math.PI);
+		context.lineTo(x, y);
+		context.closePath();
+		context.strokeStyle = "transparent";
+		context.setLineDash([]);
+		context.fill();
+
+		context.fillStyle = "white";
+		context.beginPath();
+		context.arc(x, y, extraLength, startAngle * Math.PI, endAngle * Math.PI);
+		context.lineTo(x, y);
+		context.closePath();
+		context.strokeStyle = "white";
+		context.stroke();
+		context.fill();
+	}
+}
+
+function getCanvasWidth() {
+	return document.getElementById("canvascontainer").offsetWidth;
+}
+
+function getCanvasHeight() {
+	return document.getElementById("canvascontainer").offsetHeight;
+}
+
+function onResize() {
+	let bounding = document.getElementById("canvascontainer").getBoundingClientRect();
+	cameraOffset.x = Math.max(Math.min(cameraOffset.x + (getCanvasWidth() - windowWidth) / 2, windowWidth - bounding.left), -bounding.left);
+	windowWidth = getCanvasWidth();
+	cameraOffset.y = Math.max(Math.min(cameraOffset.y + (getCanvasHeight() - windowHeight) / 2, windowHeight - bounding.top), -bounding.top);
+	windowHeight = getCanvasHeight();
+}
+
+canvas.addEventListener('mousedown', onPointerDown);
+canvas.addEventListener('touchstart', (e) => handleTouch(e));
+canvas.addEventListener('mouseup', onPointerUp);
+canvas.addEventListener('touchend',  (e) => handleTouch(e));
+canvas.addEventListener('mousemove', onPointerMove);
+canvas.addEventListener('touchmove', (e) => handleTouch(e));
+canvas.addEventListener('wheel', (e) => adjustZoom(e.deltaY * SCROLL_SENSITIVITY));
+canvas.addEventListener('dblclick', doubleClick);
+window.addEventListener('resize', onResize);
+
+function doubleClick() {
+	let bounding = document.getElementById("canvascontainer").getBoundingClientRect();
+        cameraOffset.x = getCanvasWidth() / 2 - defaultCameraOffsetX;
+        cameraOffset.y = getCanvasHeight() / 2 - defaultCameraOffsetY;
+	cameraZoom = defaultcameraZoom;
+}
+
+// Gets the relevant location from a mouse or single touch event
+function getEventLocation(e) {
+    if (e.touches && e.touches.length == 1) {
+        return { x:e.touches[0].clientX, y: e.touches[0].clientY }
+    } else if (e.clientX && e.clientY) {
+        return { x: e.clientX, y: e.clientY }      
+    }
+}
+
+var isDragging = false;
+var touchControl = false;
+var touchSingleDrag = false;
+var touchDoubleDrag = false;
+var dragStart = { x: 0, y: 0 };
+var touchSingleDragCoords = { x: 0, y: 0 };
+
+function onPointerDown(e) {
+    isDragging = true;
+    dragStart.x = getEventLocation(e).x / cameraZoom - cameraOffset.x;
+    dragStart.y = getEventLocation(e).y / cameraZoom - cameraOffset.y;
+}
+
+function onTouchDown(e) {
+	if (e.touches.length == 1) {
+		touchSingleDrag = true;
+	} else if (e.touches.length == 2) {
+		touchDoubleDrag = true;
+		isDragging = true;
+		let touch1 = {x: e.touches[0].clientX, y: e.touches[0].clientY};
+		let touch2 = {x: e.touches[1].clientX, y: e.touches[1].clientY};
+		let touchX = touch1.x + (touch2.x - touch1.x) / 2;
+		let touchY = touch1.y + (touch2.y - touch1.y) / 2;
+		dragStart.x = touchX / cameraZoom - cameraOffset.x;
+		dragStart.y = touchY / cameraZoom - cameraOffset.y;
+	}
+}
+
+var lastTap = null;
+var timeout;
+
+function onPointerUp(e) {
+	isDragging = false;
+	touchSingleDrag = false;
+	touchDoubleDrag = false;
+	initialPinchDistance = null;
+	lastZoom = cameraZoom;
+	touchSingleDragCoords = {x: 0, y: 0};
+}
+
+function onPointerMove(e) {
+	if (isDragging) {
+		cameraOffset.x = Math.max(Math.min(getEventLocation(e).x / cameraZoom - dragStart.x, windowWidth), 0);
+		cameraOffset.y = Math.max(Math.min(getEventLocation(e).y / cameraZoom - dragStart.y, windowHeight), 0);
+	}
+}
+
+function handleSingleDrag(e) {
+	e.preventDefault();
+	touchSingleDragCoords = {x: e.touches[0].clientX, y: e.touches[0].clientY};
+}
+
+function handleDoubleTap(e) {
+	const curTime = new Date().getTime();
+	if (lastTap != null) {
+		const tapLen = curTime - lastTap;
+		if (tapLen < 500 && tapLen > 0) {
+			doubleClick();
+			e.preventDefault();
+		} else {
+			// Single tap currently not use
+		}
+	}
+	timeout = setTimeout(() => {
+		clearTimeout(timeout);
+	}, 500);
+	lastTap = curTime;
+}
+
+function handleTouch(e, touchHandler) {
+    if (e.type == "touchstart") {
+	touchControl = true;
+        onTouchDown(e);
+    } else if (e.type == "touchend") {
+	if (touchDoubleDrag == false) {
+		handleDoubleTap(e);
+	}
+        onPointerUp(e);
+    } else if (e.type == "touchmove" && e.touches.length == 1) {
+        handleSingleDrag(e);
+    } else if (e.type == "touchmove" && e.touches.length == 2) {
+        handlePinch(e);
+    }
+}
+
+let initialPinchDistance = null
+let lastZoom = cameraZoom
+
+function handlePinch(e) {
+	e.preventDefault();
+	if (isDragging) {
+		let bounding = document.getElementById("canvascontainer").getBoundingClientRect();
+		let touch1 = { x: e.touches[0].clientX, y: e.touches[0].clientY};
+		let touch2 = { x: e.touches[1].clientX, y: e.touches[1].clientY};
+
+		// This is distance squared, but no need for an expensive sqrt as it's only used in ratio
+		let currentDistance = Math.sqrt((touch1.x - touch2.x)**2 + (touch1.y - touch2.y)**2);
+
+		let touchX = touch1.x + (touch2.x - touch1.x) / 2;
+		let touchY = touch1.y + (touch2.y - touch1.y) / 2;
+
+		if (initialPinchDistance == null) {
+			initialPinchDistance = currentDistance;
+		} else {
+			adjustZoom( null, currentDistance / initialPinchDistance );
+		}
+
+		cameraOffset.x = Math.max(Math.min(touchX / lastZoom - dragStart.x, windowWidth - bounding.left), -bounding.left);
+		cameraOffset.y = Math.max(Math.min(touchY / lastZoom - dragStart.y, windowHeight - bounding.top), -bounding.top);
+	}
+}
+
+function adjustZoom(zoomAmount, zoomFactor) {
+        if (zoomAmount) {
+            cameraZoom -= zoomAmount;
+        } else if (zoomFactor) {
+            cameraZoom = zoomFactor * lastZoom;
+        }
+        cameraZoom = Math.min( cameraZoom, MAX_ZOOM );
+        cameraZoom = Math.max( cameraZoom, MIN_ZOOM );
+	
+	return cameraZoom;
+}
+
+function rotate(inputX, inputY, angle, round = true) {
+	var angleRad = -angle * Math.PI / 180;
+	var x = inputX;
+	var y = -inputY;
+	var xNew = x * Math.cos(angleRad) - y * Math.sin(angleRad);
+	var yNew = x * Math.sin(angleRad) + y * Math.cos(angleRad);
+	if (round == true) {
+		xNew = Math.round(xNew);
+		yNew = Math.round(yNew);
+	}
+	return [xNew, -yNew];
+}
+
+function Shutter(posX, posY, radius) {
+	this.posX = posX;
+	this.posY = posY;
+	this.radius = radius;
+	this.draw = function() {
+		var context;
+		if (focus.includes("shutter")) {
+			context = fctx;
+		} else {
+			context = octx;
+		}
+		P = [this.posX, this.posY];
+		context.strokeStyle = "#9e247bff";
+		context.lineWidth = 8;
+		// Upper part
+		context.beginPath();
+		//context.arc(P[0], P[1], this.radius, 1.3 * Math.PI, 1.7 * Math.PI);
+		context.arc(P[0], P[1], this.radius, (1.3 + 0.5 * attenuation) * Math.PI, (1.7 + 0.5 * attenuation) * Math.PI);
+		context.strokeStyle = "solid";
+		context.setLineDash([]);
+		context.stroke();
+		// Lower part
+		context.beginPath();
+		//context.arc(P[0], P[1], this.radius, 0.3 * Math.PI, 0.7 * Math.PI);
+		context.arc(P[0], P[1], this.radius, (0.3 + 0.5 * attenuation) * Math.PI, (0.7 + 0.5 * attenuation) * Math.PI);
+		context.strokeStyle = "solid";
+		context.setLineDash([]);
+		context.stroke();
+		context.lineWidth = 1;
+	}
+}
+
+function Slit(posX, posY, width, height, gap, idx) {
+	this.posX = posX;
+	this.posY = posY;
+	this.width = width;
+	this.height = height;	
+	this.gap = gap;
+	this.idx = idx;
+	this.angle = 45;
+	this.dY1 = this.width / 2 * Math.tan(this.angle / 180 * Math.PI);
+	this.dY2 = this.height - this.width / 2 - this.dY1
+	this.draw = function() {
+		var context;
+		if (focus.includes("slits") || (focus.includes("slit1") && this.idx == 1) || (focus.includes("slit2") && this.idx == 2) || (focus.includes("slit3") && this.idx == 3)) {
+			context = fctx;
+		} else {
+			context = octx;
+		}
+		// Upper part of slit
+		PU1 = [this.posX, this.posY - this.gap / 2];
+		PU2 = [this.posX - this.width / 2, PU1[1] - this.dY1];
+		PU3 = [this.posX - this.width / 2, PU2[1] - this.dY2];
+		PU4 = [this.posX, PU2[1] - this.dY2];
+		PU5 = [this.posX + this.width / 2, PU1[1] - this.dY1];
+		
+		var grd;
+		
+		if (!isNaN(PU1[0]) && mainSVGheight != 0) {
+			grd = ctx.createLinearGradient(PU2[0], PU2[1], PU5[0], PU5[1]);
+		} else {
+			grd = ctx.createLinearGradient(0, 0, 0, 0);
+		}
+		
+		grd.addColorStop(0, "#808080ff");
+		grd.addColorStop(0.3, "#404040ff");
+		grd.addColorStop(1, "#808080ff");
+		
+		context.fillStyle = grd;
+		context.beginPath();
+		context.moveTo(PU1[0], PU1[1]);
+		context.lineTo(PU2[0], PU2[1]);
+		context.lineTo(PU3[0], PU3[1]);
+		context.arc(PU4[0], PU4[1], this.width / 2, Math.PI, 2 * Math.PI);
+		context.lineTo(PU5[0], PU5[1]);
+		//context.fillStyle = "red";
+		context.fill();
+		context.closePath();
+		context.strokeStyle = "transparent";
+		context.setLineDash([]);
+		context.stroke();
+		
+		// Lower part of slit
+		PU1 = [this.posX, this.posY + this.gap / 2];
+		PU2 = [this.posX + this.width / 2, PU1[1] + this.dY1];
+		PU3 = [this.posX + this.width / 2, PU2[1] + this.dY2];
+		PU4 = [this.posX, PU2[1] + this.dY2];
+		PU5 = [this.posX - this.width / 2, PU1[1] + this.dY1];
+		
+		var grd;
+		
+		if (!isNaN(PU1[0]) && mainSVGheight != 0) {
+			grd = context.createLinearGradient(PU2[0], PU2[1], PU5[0], PU5[1]);
+		} else {
+			grd = context.createLinearGradient(0, 0, 0, 0);
+		}
+		
+		grd.addColorStop(0, "#808080ff");
+		grd.addColorStop(0.7, "#404040ff");
+		grd.addColorStop(1, "#808080ff");
+		
+		context.fillStyle = grd;
+		context.beginPath();
+		context.moveTo(PU1[0], PU1[1]);
+		context.lineTo(PU2[0], PU2[1]);
+		context.lineTo(PU3[0], PU3[1]);
+		context.arc(PU4[0], PU4[1], this.width / 2, 2 * Math.PI, Math.PI);
+		context.lineTo(PU5[0], PU5[1]);
+		//context.fillStyle = "red";
+		context.fill();
+		context.closePath();
+		context.strokeStyle = "transparent";
+		context.setLineDash([]);
+		context.stroke();
+	}
+}
+
+function Prism(posX, posY, width, height, idx) {
+	this.posX = posX;
+	this.posY = posY;
+	this.width = width;
+	this.height = height;
+	this.idx = idx;
+	this.draw = function() {
+		var context;
+		if (focus.includes("prisms") || (focus.includes("prism1") && this.idx == 1) || (focus.includes("prism2") && this.idx == 2)) {
+			context = fctx;
+		} else {
+			context = octx;
+		}
+		var prismAngle = getPrismAngle(this.idx);
+		var P1 = [this.posX - this.width / 2, this.posY + this.height / 2];
+		var P2 = [P1[0], P1[1] - this.height];
+		var P3 = [P1[0] + this.width, P1[1]];
+		
+		var xP1 = P1[0] - this.posX;
+		var yP1 = P1[1] - this.posY;
+		
+		var xP1rot = xP1 * Math.cos(prismAngle / 180 * Math.PI) - yP1 * Math.sin(prismAngle / 180 * Math.PI);
+		var yP1rot = xP1 * Math.sin(prismAngle / 180 * Math.PI) + yP1 * Math.cos(prismAngle / 180 * Math.PI);
+		
+		xP1rot += this.posX;
+		yP1rot += this.posY;
+		
+		P1 = [xP1rot, yP1rot];
+		
+		var xP2 = P2[0] - this.posX;
+		var yP2 = P2[1] - this.posY;
+		
+		var xP2rot = xP2 * Math.cos(prismAngle / 180 * Math.PI) - yP2 * Math.sin(prismAngle / 180 * Math.PI);
+		var yP2rot = xP2 * Math.sin(prismAngle / 180 * Math.PI) + yP2 * Math.cos(prismAngle / 180 * Math.PI);
+		
+		xP2rot += this.posX;
+		yP2rot += this.posY;
+		
+		P2 = [xP2rot, yP2rot];
+		
+		var xP3 = P3[0] - this.posX;
+		var yP3 = P3[1] - this.posY;
+		
+		var xP3rot = xP3 * Math.cos(prismAngle / 180 * Math.PI) - yP3 * Math.sin(prismAngle / 180 * Math.PI);
+		var yP3rot = xP3 * Math.sin(prismAngle / 180 * Math.PI) + yP3 * Math.cos(prismAngle / 180 * Math.PI);
+		
+		xP3rot += this.posX;
+		yP3rot += this.posY;
+		
+		P3 = [xP3rot, yP3rot];
+		
+		var grd;
+		
+		if (!isNaN(P1[0]) && mainSVGheight != 0) {
+			grd = ctx.createLinearGradient(P2[0], P2[1], P3[0], P3[1]);
+		} else {
+			grd = ctx.createLinearGradient(0, 0, 0, 0);
+		}
+		
+		grd.addColorStop(0, "#80c9ffff");
+		grd.addColorStop(1, "#e5f4ffff");
+		
+		context.fillStyle = grd;
+		context.beginPath();
+		context.moveTo(P1[0], P1[1]);
+		context.lineTo(P2[0], P2[1]);
+		context.lineTo(P3[0], P3[1]);
+		context.fill();
+		context.closePath();
+		context.strokeStyle = "transparent";
+		context.setLineDash([]);
+		context.stroke();
+	}
+}
+
+function getDispersionPos(WL, linear = false) {
+	var dispersionPos;
+	if (linear == false) {
+		dispersionPos = getPrismAngle(1, WL);
+	} else {
+		dispersionPos = 1 - (WL - minWL) / (maxWL - minWL);
+	}
+	return dispersionPos;
+}
+
+function getPrismAngle(idx, WL = 0) {
+	var y0, A, t, midpoint, angle, minAngle, maxAngle;
+	if (idx == 1) {
+		midpoint = 30.3;
+		y0 = 25.73;
+		A = 128;
+		t = 66;
+	} else if (idx == 2) {
+		midpoint = 29.6;
+		y0 = 25.3;
+		A = 117;
+		t = 67;
+	}
+	if (WL == 0) {
+		angle = y0 + A * Math.exp(-currentWL / t);
+		angle = midpoint + (angle - midpoint) * prismAngleFactor;
+		angle = -angle;
+	} else {
+		minAngle = y0 + A * Math.exp(-minWL / t);
+		maxAngle = y0 + A * Math.exp(-maxWL / t);
+		angle = y0 + A * Math.exp(-WL / t);
+		angle = Math.abs((angle - minAngle) / (maxAngle - minAngle))
+	}
+	return angle;
+}
+
+function getDeflection(idx) {
+	var y0, A, t, midpoint, deflection;
+	var midpoint = 8;
+	if (idx == 1) {
+		midpoint = 8.9;
+		y0 = 5.5;
+		A = 218;
+		t = 50;
+	} else if (idx == 2) {
+		midpoint = 10.7;
+		y0 = 6.6;
+		A = 261;
+		t = 50;
+	}
+	deflection = y0 + A * Math.exp(-currentWL / t);
+	deflection = midpoint + (deflection - midpoint) * deflectionFactor;
+	return deflection;
+}
+
+function getVertWL(WL) {
+	var a = -2152.0;
+	var b = -386.0;
+	var c = 233.0;
+	var WL_vert = a - b * Math.log(WL + c);
+	return WL_vert;
+}
+
+function PEM(beamX, width, height, frequency = 0.1, refIdx = 1.4, dimensionsChange = 0.5) {
+	this.beamX = beamX;
+	this.width = width;
+	this.height = height;
+	this.frequency = frequency; // Frequency of operation in Hertz
+	this.refIdx = refIdx; // Refractive index of horizontal component relative to that of air
+	this.draw = function(beam) {
+		var context;
+		if (focus.includes("pem")) {
+			context = fctx;
+		} else {
+			context = octx;
+		}
+		var x = beam.startX + Math.cos(beam.angle() * Math.PI / 180) * beamX;
+		var y = beam.startY + Math.sin(beam.angle() * Math.PI / 180) * beamX;
+		var angle = beam.angle();
+		
+		// Draw optical element
+		
+		var modWidth = width * (1 - dimensionsChange * PEMmod);
+		var modHeight = height * (1 + dimensionsChange * PEMmod);
+		//var topRight = [modWidth / 2, -modHeight / 2];
+		//var bottomRight = [modWidth / 2, modHeight / 2];
+		//var bottomLeft = [-modWidth / 2, modHeight / 2];
+		//var topLeft = [-modWidth / 2, -modHeight / 2];
+		var topRight = [width / 2, -modHeight / 2];
+		var bottomRight = [width / 2, modHeight / 2];
+		var bottomLeft = [-width / 2, modHeight / 2];
+		var topLeft = [-width / 2, -modHeight / 2];
+		
+		topRight = rotate(topRight[0], topRight[1], angle, false);
+		bottomRight = rotate(bottomRight[0], bottomRight[1], angle, false);
+		bottomLeft = rotate(bottomLeft[0], bottomLeft[1], angle, false);
+		topLeft = rotate(topLeft[0], topLeft[1], angle, false);
+
+		var grd;
+		
+		if (!isNaN(topLeft[0]) && mainSVGheight != 0) {
+			grd = context.createLinearGradient(x + topLeft[0], y + topLeft[1], x + topRight[0], y + topRight[1]);
+		} else {
+			grd = context.createLinearGradient(0, 0, 0, 0);
+		}
+		
+		grd.addColorStop(0, "#80c9ffaa");
+		grd.addColorStop(1, "#e5f4ffaa");
+
+		context.fillStyle = grd;
+		context.beginPath();
+		context.moveTo(topRight[0] + x, topRight[1] + y);
+		context.lineTo(bottomRight[0] + x, bottomRight[1] + y);
+		context.lineTo(bottomLeft[0] + x, bottomLeft[1] + y);
+		context.lineTo(topLeft[0] + x, topLeft[1] + y);
+		context.fill();
+		context.closePath();
+		context.strokeStyle = "transparent";
+		context.setLineDash([]);
+		context.stroke();
+		
+		// Draw Piezo element
+		
+		x = beam.startX + Math.cos(beam.angle() * Math.PI / 180) * beamX - Math.sin(beam.angle() * Math.PI / 180) * height;
+		y = beam.startY + Math.sin(beam.angle() * Math.PI / 180) * beamX - Math.cos(beam.angle() * Math.PI / 180) * height;
+		
+		modHeight = height * (1 - dimensionsChange * PEMmod);
+		//topRight = [modWidth / 2, -modHeight / 2];
+		//bottomRight = [modWidth / 2, modHeight / 2];
+		//bottomLeft = [-modWidth / 2, modHeight / 2];
+		//topLeft = [-modWidth / 2, -modHeight / 2];
+		topRight = [width / 2, -modHeight / 2];
+		bottomRight = [width / 2, modHeight / 2];
+		bottomLeft = [-width / 2, modHeight / 2];
+		topLeft = [-width / 2, -modHeight / 2];
+		
+		topRight = rotate(topRight[0], topRight[1], angle, false);
+		bottomRight = rotate(bottomRight[0], bottomRight[1], angle, false);
+		bottomLeft = rotate(bottomLeft[0], bottomLeft[1], angle, false);
+		topLeft = rotate(topLeft[0], topLeft[1], angle, false);
+		
+		if (!isNaN(topLeft[0]) && mainSVGheight != 0) {
+			grd = context.createLinearGradient(x + topLeft[0], y + topLeft[1], x + topRight[0], y + topRight[1]);
+		} else {
+			grd = context.createLinearGradient(0, 0, 0, 0);
+		}
+		
+		grd.addColorStop(0, "#333333");
+		grd.addColorStop(1, "#999999");
+		
+		context.fillStyle = grd;
+		context.beginPath();
+		context.moveTo(topRight[0] + x, topRight[1] + y);
+		context.lineTo(bottomRight[0] + x, bottomRight[1] + y);
+		context.lineTo(bottomLeft[0] + x, bottomLeft[1] + y);
+		context.lineTo(topLeft[0] + x, topLeft[1] + y);
+		context.fill();
+		context.closePath();
+		context.strokeStyle = "transparent";
+		context.setLineDash([]);
+		context.stroke();
+	}
+}
+
+function Sample(beamX, width, height, TransL = -1, TransR = -1) {
+	this.beamX = beamX;
+	this.width = width;
+	this.height = height;
+	this.TransL = TransL; // Transmission for left-handed circularly polarised light
+	this.TransR = TransR; // Transmission for right-handed circularly polarised light
+	this.AbsL = function() { // Absorbance for left-handed circularly polarised light
+		var signal;
+		if (sampleOn == false) {
+			return 0;
+		} else if (this.TransL == -1) {
+			signal = getSampleSignal(currentWL);
+			if (Math.sign(signal) >= 0) {
+				return signal;
+			} else {
+				return 0;
+			}
+		} else {
+			return 1 - this.TransL;
+		}
+	}
+	this.AbsR = function() { // Absorbance for right-handed circularly polarised light
+		if (sampleOn == false) {
+			return 0;
+		} else if (this.TransR == -1) {
+			signal = getSampleSignal(currentWL);
+			if (Math.sign(signal) < 0) {
+				return -signal;
+			} else {
+				return 0;
+			}
+		} else {
+			return 1 - this.TransR;
+		}
+	}
+	this.draw = function(beam) {
+		var x = beam.startX + Math.cos(beam.angle() * Math.PI / 180) * beamX;
+		var y = beam.startY + Math.sin(beam.angle() * Math.PI / 180) * beamX;
+		var angle = beam.angle();
+		var topRight = [width / 2, -height / 2];
+		var bottomRight = [width / 2, height / 2];
+		var bottomLeft = [-width / 2, height / 2];
+		var topLeft = [-width / 2, -height / 2];
+		
+		topRight = rotate(topRight[0], topRight[1], angle);
+		bottomRight = rotate(bottomRight[0], bottomRight[1], angle);
+		bottomLeft = rotate(bottomLeft[0], bottomLeft[1], angle);
+		topLeft = rotate(topLeft[0], topLeft[1], angle);
+
+		if (!isNaN(topLeft[0]) && mainSVGheight != 0) {
+			grd = ctx.createLinearGradient(x + topLeft[0], y + topLeft[1], x + topRight[0], y + topRight[1]);
+		} else {
+			grd = ctx.createLinearGradient(0, 0, 0, 0);
+		}
+		
+		grd.addColorStop(0, "#80c9ffaa");
+		grd.addColorStop(1, "#e5f4ffaa");
+		
+		ctx.fillStyle = grd;	
+		ctx.beginPath();
+		ctx.moveTo(topRight[0] + x, topRight[1] + y);
+		ctx.lineTo(bottomRight[0] + x, bottomRight[1] + y);
+		ctx.lineTo(bottomLeft[0] + x, bottomLeft[1] + y);
+		ctx.lineTo(topLeft[0] + x, topLeft[1] + y);
+		ctx.fill();
+		ctx.closePath();
+		ctx.strokeStyle = "transparent";
+		ctx.setLineDash([]);
+		ctx.stroke();
+	}
+}
+
+function Beam(idx, startX, startY, endX, endY, sample = 0, pem = 0, speed = 1, wavelength = 180, dash = [], color = "gray", linewidth = 1, linecap = "butt", context = ctx, contrast = false, gradient = []) {
+	this.idx = idx;
+	this.startX = startX;
+	this.startY = startY;
+	this.endX = endX;
+	this.endY = endY;
+	this.sample = sample;
+	this.pem = pem;
+	this.speed = speed;
+	this.wavelength = wavelength;
+	this.dash = dash;
+	this.color = color;
+	this.linewidth = linewidth;
+	this.linecap = linecap;
+	this.context = context;
+	this.contrast = contrast;
+	this.gradient = gradient;
+	this.pxWL = WLtopxWL(this.wavelength);
+	this.width = function() {
+		width = this.endX - this.startX;
+		return width;
+	}
+	this.height = function() {
+		height = this.endY - this.startY;
+		return height;
+	}
+	this.angle = function() {
+		angle = 180 / Math.PI * Math.atan2(this.height(), this.width());
+		return angle;
+	}
+	this.length = function() {
+		length = Math.sqrt(Math.pow(this.width(), 2) + Math.pow(this.height(), 2));
+		return length;
+	}
+	this.minlength = function() {
+		minlength = Math.floor(this.length() / this.pxWL) * this.pxWL;
+		if (minlength == 0) {
+			minlength = this.pxWL;
+		}
+		return minlength;
+	}
+	this.draw = function() {
+		var newColor;
+		var lightfactor = 0.5; // 0 = original color, 1 = white
+		if (typeof this.color == "string") {
+			rgb = hexToRGB(standardize_color(this.color));
+			hsl = RGBToHSL(rgb[0], rgb[1], rgb[2]);
+			darkColor = this.color;
+		} else {
+			hsl = this.color;
+			darkColor = "hsl(" + hsl[0] + "," + hsl[1] + "%," + hsl[2] + "%)";
+		}
+		newL = Math.round(hsl[2] + (100 - hsl[2]) * lightfactor);
+		newColor = "hsl(" + hsl[0] + "," + hsl[1] + "%," + newL + "%)";
+		if (typeof this.color != "string") {
+			if (hsl.length > 3) {
+				newColor = "hsl(" + hsl[0] + "," + hsl[1] + "%," + hsl[2] + "%, " + hsl[3] + ")";
+			}
+		}
+		
+		if (this.color != "none") {
+			this.context.lineCap = this.linecap;
+			this.context.fillStyle = "transparent";
+			if (this.contrast == true) {
+				this.context.lineWidth = this.linewidth + 1;
+				this.context.beginPath();
+				this.context.moveTo(this.startX, this.startY);
+				this.context.lineTo(this.endX, this.endY);
+				this.context.strokeStyle = "white";
+				this.context.setLineDash([]);
+				this.context.stroke();
+			}
+			
+			if (this.gradient.length) {
+				grd = context.createLinearGradient(this.startX, this.startY, this.endX, this.endY);
+				var newColor1, newColor2, newAlpha1, newAlpha2;
+				if (hsl.length > 3) {
+					newAlpha1 = hsl[3] * gradient[0];
+					newAlpha2 = hsl[3] * gradient[1];
+				} else {
+					newAlpha1 = gradient[0];
+					newAlpha2 = gradient[1];
+				}
+				newColor1 = "hsl(" + hsl[0] + "," + hsl[1] + "%," + hsl[2] + "%, " + newAlpha1 + ")";
+				newColor2 = "hsl(" + hsl[0] + "," + hsl[1] + "%," + hsl[2] + "%, " + newAlpha2 + ")";
+				console.log("this.gradient.length: " + this.gradient.length);
+				console.log("newColor1: " + newColor1);
+				console.log("newColor2: " + newColor2);
+				grd.addColorStop(0, newColor1);
+				grd.addColorStop(1, newColor2);
+				this.context.strokeStyle = grd;
+			} else {
+				this.context.strokeStyle = newColor;
+			}
+			
+			this.context.lineWidth = this.linewidth;
+			this.context.beginPath();
+			this.context.moveTo(this.startX, this.startY);
+			this.context.lineTo(this.endX, this.endY);
+			this.context.setLineDash(this.dash);
+			this.context.stroke();
+		}
+	}
+}
+
+function Segment(beam, length, cyclelength = 0, position = 0, phasediff = 0, ampY = 10, ampZ = 10, roll = 0, color = "black", gradient = "horizontal", context = bctx) {
+	this.beam = beam;
+	this.position = position;
+	this.length = length;
+	if (cyclelength == 0) {
+		this.cyclelength = beam.minlength();
+	} else {
+		this.cyclelength = cyclelength;
+	}
+	this.phasediff = phasediff;
+	this.ampY = ampY * maxAmp * getIforWL(this.beam.wavelength);
+	this.ampZ = ampZ * maxAmp * getIforWL(this.beam.wavelength);
+	//this.ampY = ampY * maxAmp;
+	//this.ampZ = ampZ * maxAmp;
+	this.WL = this.beam.pxWL;
+	this.roll = roll;
+	this.color = color;
+	this.gradient = gradient;
+	this.draw = function() {
+		path = convertToBezier(this);
+		if (path != null) {
+			xShift = this.beam.startX;
+			yShift = this.beam.startY;
+			translatePath(path, xShift, yShift + 1);
+			path.forEach((item, index) => drawPath(item, index, context));
+			
+			if (this.gradient == "none") {
+				context.strokeStyle = this.color;
+			} else {
+				var rgb;
+				var hsl;
+				var newL;
+				var lightColor;
+				var darkColor;
+				var lightfactor = 0.75; // 0 = original color, 1 = white
+				if (typeof this.color == "string") {
+					rgb = hexToRGB(standardize_color(this.color));
+					hsl = RGBToHSL(rgb[0], rgb[1], rgb[2]);
+					darkColor = this.color;
+				} else {
+					hsl = this.color;
+					darkColor = "hsl(" + hsl[0] + "," + hsl[1] + "%," + hsl[2] + "%)";
+				}
+				newL = Math.round(hsl[2] + (100 - hsl[2]) * lightfactor);
+				lightColor = "hsl(" + hsl[0] + "," + hsl[1] + "%," + newL + "%)";
+				var grd;
+				var angle;
+				var grdStop;
+				if (this.gradient == "vertical") {
+					if (this.beam.angle() > 90) {
+						angle = 180 - this.beam.angle();
+					} else {
+						angle = this.beam.angle();
+					}
+					dx = this.ampY * Math.sin(angle / 180 * Math.PI);
+					dy = this.ampY * Math.cos(angle / 180 * Math.PI);
+					grdPos = [this.beam.startX + dx, this.beam.startY + dy, this.beam.startX - dx, this.beam.startY - dy]
+				} else if (this.gradient == "horizontal") {
+					var timePerCycle = this.WL / this.beam.speed;
+					var timediff = (t / 1000)%(timePerCycle);
+					moveShift = this.beam.speed * timediff;
+					var grdLength = this.beam.minlength() + 2 * this.WL;
+					var offset = this.beam.minlength() - this.beam.length() + this.WL;
+					var shift = this.WL / 4;
+					if (this.beam.angle() > 90) {
+						shift *= -1;
+					}
+					var grdStartX = this.beam.endX - grdLength * Math.cos(this.beam.angle() / 180 * Math.PI);
+					var grdStartY = this.beam.endY - grdLength * Math.sin(this.beam.angle() / 180 * Math.PI);
+					var dx = (moveShift + offset + shift) * Math.cos(this.beam.angle() / 180 * Math.PI);
+					var dy = (moveShift + offset + shift) * Math.sin(this.beam.angle() / 180 * Math.PI);
+					grdPos = [grdStartX + dx, grdStartY + dy, this.beam.endX + dx, this.beam.endY + dy];
+					// Don't use gradient after PEM!
+					if (this.beam.pem != 0) {
+						grdStop = (grdLength - this.beam.length() + this.beam.pem.beamX) / grdLength - (moveShift + offset + shift) / grdLength;
+					} else {
+						grdStop = 1;
+					}
+				}
+				grd = context.createLinearGradient(grdPos[0], grdPos[1], grdPos[2], grdPos[3]);
+				var steps = (grdLength / this.WL) * 2 + 1;
+				var stopStep = 1.0 / (steps - 1);
+				for (let i = 0; i < steps; i++) {
+					if (i % 2 == 0) {
+						if (i * stopStep < grdStop) {
+							grd.addColorStop(i * stopStep, darkColor);
+						} else {
+							grd.addColorStop(grdStop, darkColor);
+							break;
+						}
+					} else {
+						if (i * stopStep < grdStop) {
+							grd.addColorStop(i * stopStep, lightColor);
+						} else {
+							grd.addColorStop(grdStop, darkColor);
+							break;
+						}
+					}
+				}			
+				context.strokeStyle = grd;
+			}
+			context.setLineDash([]);
+			context.stroke();
+		}
+	}
+	// Create clipping path
+
+	if (magnifierOn == true) {
+		let x = null;
+		let y = null;
+		if (touchControl == false && magnifiercanvas.parentNode.querySelector(":hover") == canvas) {
+			x = cursorX;
+			y = cursorY;
+		} else if (touchControl == true && touchDoubleDrag == false && touchSingleDrag == true) {
+			x = touchSingleDragCoords.x;
+			y = touchSingleDragCoords.y;
+		}
+		
+		if (x != null && y != null) {
+			let bounding = document.getElementById("canvascontainer").getBoundingClientRect();
+			let xCoord = getCanvasWidth() * ((x - bounding.left) / windowWidth / cameraZoom + (1 - 1 / cameraZoom) / 2) - cameraOffset.x;
+			let yCoord = getCanvasHeight() * ((y - bounding.top) / windowHeight / cameraZoom + (1 - 1 / cameraZoom) / 2) - cameraOffset.y;
+		
+			bctx.beginPath();
+			bctx.arc(xCoord - magnifyingGlassOffset, yCoord - magnifyingGlassOffset, magnifierRadius, 0, Math.PI * 2);
+			bctx.strokeStyle = "#00000000";
+			bctx.stroke();
+			bctx.clip();
+			
+			b2ctx.beginPath();
+			b2ctx.arc(xCoord - magnifyingGlassOffset, yCoord - magnifyingGlassOffset, magnifierRadius, 0, Math.PI * 2);
+			b2ctx.strokeStyle = "#00000000";
+			b2ctx.stroke();
+			b2ctx.clip();
+		}
+	}
+}
+
+function RGBToHSL(r, g, b) {
+	// Make r, g, and b fractions of 1
+	r /= 255;
+	g /= 255;
+	b /= 255;
+
+	// Find greatest and smallest channel values
+	let cmin = Math.min(r, g, b),
+	cmax = Math.max(r, g, b),
+	delta = cmax - cmin,
+	h = 0,
+	s = 0,
+	l = 0;
+
+	// Calculate hue
+	// No difference
+	if (delta == 0) {
+		h = 0;
+		// Red is max
+	} else if (cmax == r) {
+		h = ((g - b) / delta) % 6;
+		// Green is max
+	} else if (cmax == g) {
+		h = (b - r) / delta + 2;
+		// Blue is max
+	} else {
+		h = (r - g) / delta + 4;
+	}
+		
+	h = Math.round(h * 60);
+
+	// Make negative hues positive behind 360°
+	if (h < 0) {
+		h += 360;
+	}
+		
+	// Calculate lightness
+	l = (cmax + cmin) / 2;
+
+	// Calculate saturation
+	s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+
+	// Multiply l and s by 100
+	s = +(s * 100).toFixed(1);
+	l = +(l * 100).toFixed(1);
+
+	return [h, s, l];
+}
+
+function hexToRGB(h) {
+  let r = 0, g = 0, b = 0;
+
+  // 3 digits
+  if (h.length == 4) {
+    r = "0x" + h[1] + h[1];
+    g = "0x" + h[2] + h[2];
+    b = "0x" + h[3] + h[3];
+
+  // 6 digits
+  } else if (h.length == 7) {
+    r = "0x" + h[1] + h[2];
+    g = "0x" + h[3] + h[4];
+    b = "0x" + h[5] + h[6];
+  }
+  
+  return [r, g, b];
+}
+
+function standardize_color(str){
+    var ctx = document.createElement("canvas").getContext("2d");
+    ctx.fillStyle = str;
+    return ctx.fillStyle;
+}
+
+function translatePath(path, xShift, yShift) {
+	path.forEach((item, index, array) => {
+		if (item[0] == "M") {
+			item[1][0] = item[1][0] + xShift;
+			item[1][1] = item[1][1] + yShift;
+		} else if (item[0] == "C") {
+			item[1][0] = item[1][0] + xShift;
+			item[1][1] = item[1][1] + yShift;
+			item[1][2] = item[1][2] + xShift;
+			item[1][3] = item[1][3] + yShift;
+			item[1][4] = item[1][4] + xShift;
+			item[1][5] = item[1][5] + yShift;
+		}
+	});
+}
+
+function drawPath(item, index, context) {
+	if (index == 0) {
+		context.fillStyle = "transparent";
+		context.beginPath();
+	}
+	if (item[0] == "M") {
+		context.moveTo(item[1][0], item[1][1]);
+	} else if (item[0] == "C") {
+		context.bezierCurveTo(item[1][0], item[1][1], item[1][2], item[1][3], item[1][4], item[1][5]);
+	}
+}
+
+function convertToBezier(segment) {
+	var useYawFactor;
+	if (segment.roll == 45) {
+		useYawFactor = 1;
+	} else {
+		useYawFactor = yawFactor;
+	}
+	var t0, xleft = -1.0, xright = 1.0, ybottom = -1.0, ytop = 1.0, width = 2, height = 2, left = 0, bottom = 0, isoscale = false;
+	var segmentLength = segment.length;
+	var segmentLength3D = segment.length * useYawFactor;
+	var WL = segment.WL;
+
+	var cyclelength = segment.cyclelength;
+	var cyclelength3D = segment.cyclelength * useYawFactor;
+	var timePerCycle = segment.cyclelength / segment.beam.speed;
+	var cycleRelPos = (t / 1000)%(timePerCycle) / timePerCycle;
+	
+	var position = segment.position + cycleRelPos * cyclelength;
+	var position3D = segment.position * useYawFactor + cycleRelPos * cyclelength3D;
+	
+	var relSegmentLength = segmentLength3D / WL;
+	var samples = Math.floor(relSegmentLength * 4 * segmentResolution + 1);
+
+	var t_start = position3D;
+	var t_end = position3D + segmentLength3D;
+	
+	if (position + segmentLength < 0 || position > segment.beam.length()) {
+		return null;	
+	} else {
+	
+		if (position < 0) {
+			t_start = 0;
+		}
+		if (position + segmentLength > segment.beam.length()) {
+			t_end = segment.beam.length() * useYawFactor;
+		}
+		
+		// coords and scales based on line
+		var scalex = width / (xright - xleft);
+		var xoff = left;
+		var coordx = (x) => (x - xleft) * scalex + xoff;  // convert x-value to coordinate
+		var scaley = height / (ytop - ybottom);
+		var yoff = bottom;
+		var coordy = (y) => (ybottom - y) * scaley + yoff;  // convert y-value to coordinate
+
+		// Check for isotropic scaling and use smaller of the two scales, correct ranges
+		if (isoscale) {
+			if (scaley < scalex) {
+				// compute zero location
+				xzero = coordx(0);
+				// set scale
+				scalex = scaley
+				// correct x-offset
+				xleft = (left - xzero) / scalex;
+				xright = (left + width - xzero) / scalex;
+			} else {
+				// compute zero location
+				yzero = coordy(0);
+				// set scale
+				scaley = scalex;
+				// correct x-offset
+				ybottom = (yzero - bottom) / scaley;
+				ytop = (bottom + height - yzero) / scaley;
+			}
+		}
+		
+		// step is increment of t
+		step = (t_end - t_start) / (samples - 1);
+
+		third = step / 3.0;
+		ds = step * 0.001;  // Step used in calculating derivatives
+		
+		var a = [];  // path array
+		
+		// initialize functions and derivatives for 0;
+		// they are carried over from one iteration to the next, to avoid extra function calculations.
+		var x0 = getYZcoordinates(t_start, segment)[0];
+		var y0 = getYZcoordinates(t_start, segment)[1];
+		
+		// numerical derivatives, using 0.001*step as the small differential
+		var t1 = t_start + ds;  // Second point AFTER first point (Good for first point)
+		var x1 = getYZcoordinates(t1, segment)[0];
+		var y1 = getYZcoordinates(t1, segment)[1];
+		var dx0 = (x1 - x0) / ds;
+		var dy0 = (y1 - y0) / ds;
+		
+		// Start curve
+		var breakPath = false;
+
+		a.push(['M', [coordx(x0), coordy(y0)]]);  // initial moveto
+		for (let i = 0; i < samples - 1; i++) {
+			t1 = (i + 1) * step + t_start;
+			t2 = t1 - ds;  // Second point BEFORE first point (Good for last point)
+			x1 = getYZcoordinates(t1, segment)[0];
+			x2 = getYZcoordinates(t2, segment)[0];
+			y1 = getYZcoordinates(t1, segment)[1];
+			y2 = getYZcoordinates(t2, segment)[1];
+			
+			// numerical derivatives
+			dx1 = (x1 - x2) / ds;
+			dy1 = (y1 - y2) / ds;
+			
+			//if (segment.beam.pem != 0) {
+			if (false) {
+				var pemStart = (segment.beam.pem.beamX - segment.beam.pem.width / 2) * useYawFactor;
+				var pemEnd = (segment.beam.pem.beamX + segment.beam.pem.width / 2) * useYawFactor;
+				
+				if ((t0 < pemStart && t1 > pemStart) || (t0 < pemEnd && t1 > pemEnd)) {
+					breakPath = true;
+				}
+			}
+			
+			if (breakPath == true) {
+				a.push(['M', [coordx(x1), coordy(y1)]]);
+			} else {
+			
+				// create curve
+				a.push(['C',
+				[coordx(x0 + (dx0 * third)), coordy(y0 + (dy0 * third)),
+				coordx(x1 - (dx1 * third)), coordy(y1 - (dy1 * third)),
+				coordx(x1), coordy(y1)]
+				]); // C = Cubic Bezier Curve; draw a cubic Bézier curve from the current point to the end point specified by x,y. The start control point is specified by x1,y1 and the end control point is specified by x2,y2.
+
+			}
+				
+			t0 = t1;  // Next segment's start is this segments end
+			x0 = x1;
+			y0 = y1;
+			dx0 = dx1;  // Assume the functions are smooth everywhere, so carry over the derivatives too
+			dy0 = dy1;
+			breakPath = false;
+		}
+		return a;
+	}
+}
+
+function getYZcoordinates(x, segment) {
+	var useYawFactor;
+	if (segment.roll == 45) {
+		useYawFactor = 1;
+	} else {
+		useYawFactor = yawFactor;
+	}
+	var roll = segment.roll;
+	var beamLength = segment.beam.minlength * useYawFactor;
+	var angle = segment.beam.angle();
+	var phasediff = segment.phasediff;
+	var ampY = segment.ampY;
+	var ampZ = segment.ampZ;
+	var WL = segment.WL * useYawFactor;
+	var moveShift;
+	var ampFactor = 1;
+	
+	var timePerCycle = segment.cyclelength / segment.beam.speed;
+	var timediff = (t / 1000)%(timePerCycle);
+	moveShift = segment.beam.speed * useYawFactor * timediff;
+
+	var xShift, y, z;
+	
+	if (segment.beam.pem != 0) {
+		var preStart = (segment.beam.pem.beamX - segment.beam.pem.width / 2) * useYawFactor;
+		var preEnd = (segment.beam.pem.beamX + segment.beam.pem.width / 2) * useYawFactor;
+		var xFactorH = segment.beam.pem.refIdx;
+		var modFrac = (t / 1000)%(1 / segment.beam.pem.frequency) / (1 / segment.beam.pem.frequency);
+		var modulation = Math.sin(modFrac * 2 * Math.PI); // Changes continuously between +/- 1
+		var phasediffPEM = modulation * maxPEMshift; // Changes continuously between +/- maxPEMshift
+		
+		var xFactorV = xFactorH - phasediffPEM * WL / (segment.beam.pem.width * useYawFactor);
+
+		var startPEM = preStart / WL - moveShift / WL;
+		var midPEMh = segment.beam.pem.width / WL * xFactorH * useYawFactor;
+		var midPEMv = segment.beam.pem.width / WL * xFactorV * useYawFactor;
+		
+		if (x < preStart) {
+			xShiftV = xShiftH = x / WL - moveShift / WL;
+		} else if (x < preEnd) {
+			xShiftV = startPEM + (x - preStart) / WL * xFactorV;
+			xShiftH = startPEM + (x - preStart) / WL * xFactorH;
+		} else {
+			xShiftV = startPEM + midPEMv + (x - preEnd) / WL;
+			xShiftH = startPEM + midPEMh + (x - preEnd) / WL;
+		}
+	} else {
+		xShiftV = xShiftH = x / WL - moveShift / WL;
+	}
+	
+	if (segment.beam.pem != 0) {
+		var PEMWL = segment.beam.speed / segment.beam.pem.frequency;
+	}
+	
+	if (segment.beam.pem != 0) {
+		currentMod = Math.sin(((t / 1000) / timePerPemCycle - (x - preEnd) / (PEMWL * useYawFactor)) * 2 * Math.PI);
+		var defaultShift = segment.beam.pem.width / WL * (xFactorH - 1) * useYawFactor;
+	}
+	
+	if (segment.beam.sample != 0) {
+		var sampleStart = (segment.beam.sample.beamX - segment.beam.sample.width / 2) * useYawFactor;
+		var sampleEnd = (segment.beam.sample.beamX + segment.beam.sample.width / 2) * useYawFactor;
+
+		if (x > sampleStart && x < sampleEnd) {
+			ampFactor -= (segment.beam.sample.AbsL()) * (x - sampleStart) / (sampleEnd - sampleStart) * (1 + currentMod) / 2;
+			ampFactor -= (segment.beam.sample.AbsR()) * (x - sampleStart) / (sampleEnd - sampleStart) * (1 - (1 + currentMod) / 2);
+		} else if (x > sampleEnd) {
+			ampFactor -= (segment.beam.sample.AbsL()) * (1 + currentMod) / 2;
+			ampFactor -= (segment.beam.sample.AbsR()) * (1 - (1 + currentMod) / 2);
+		}
+	}
+
+	if (segment.beam.pem != 0 && x > preEnd) {
+		y = Math.sin(((x - moveShift) / WL - currentMod * maxPEMshift + defaultShift) * 2 * Math.PI) * (ampY * ampFactor);
+	} else {
+		y = Math.sin(xShiftV * 2 * Math.PI) * (ampY * ampFactor);
+	}
+		
+	z = Math.sin(xShiftH * 2 * Math.PI + Math.PI * phasediff) * (ampZ * ampFactor);
+	
+	var useYaw;
+	if (roll == 45) {
+		useYaw = 0;
+	} else {
+		useYaw = yaw;
+	}
+	rotCoords = rotateCoordinates(x, y, z, roll, useYaw, angle);
+	
+	x = rotCoords[0];
+	y = rotCoords[1];
+	z = rotCoords[2];
+	
+	return [x, y, z];
+}
+
+function rotateCoordinates(xRot0, yRot0, zRot0, fRoll, fYaw, fangle) {
+	// Roll
+	
+	var xRot1 = xRot0;
+	var yRot1 = - zRot0 * Math.sin(fRoll / 180 * Math.PI) + yRot0 * Math.cos(fRoll / 180 * Math.PI);
+	var zRot1 = zRot0 * Math.cos(fRoll / 180 * Math.PI) + yRot0 * Math.sin(fRoll / 180 * Math.PI);
+	
+	// Yaw
+	
+	var xRot2 = xRot1 * Math.cos(fYaw / 180 * Math.PI) - zRot1 * Math.sin(fYaw / 180 * Math.PI);
+	var yRot2 = yRot1;
+	var zRot2 = xRot1 * Math.sin(fYaw / 180 * Math.PI) + zRot1 * Math.cos(fYaw / 180 * Math.PI);
+	
+	// Rotate
+
+	var xRot3 = xRot2 * Math.cos(-fangle / 180 * Math.PI) - yRot2 * Math.sin(-fangle / 180 * Math.PI);
+	var yRot3 = xRot2 * Math.sin(-fangle / 180 * Math.PI) + yRot2 * Math.cos(-fangle / 180 * Math.PI);
+	var zRot3 = zRot2;
+	
+	return [xRot3, yRot3, zRot3]
+}
+
+function focusCamera(variables = []) {
+	if (variables.length === 0) {
+		newFocusX = defaultCameraOffsetX;
+		newFocusY = defaultCameraOffsetY;
+	} else {
+		var xVals = [];
+		var yVals = [];
+		var minX, maxX, minY, maxY;
+		for (variable of variables) {
+			xVals.push(eval(variable + "X"));
+			yVals.push(eval(variable + "Y"));
+		}
+		minX = Math.min.apply(Math, xVals);
+		maxX = Math.max.apply(Math, xVals);
+		minY = Math.min.apply(Math, yVals);
+		maxY = Math.max.apply(Math, yVals);
+		newFocusX = minX + (maxX - minX) / 2;
+		newFocusY = minY + (maxY - minY) / 2;
+	}
+}
+
+function focusZoom(variables = []) {
+	if (variables.length === 0) {
+		newFocusZoom = 0.9;
+	} else {
+		var margin = 100;
+		var xVals = [];
+		var yVals = [];
+		var minX, maxX, minY, maxY;
+		for (variable of variables) {
+			xVals.push(eval(variable + "X"));
+			yVals.push(eval(variable + "Y"));
+		}
+		minX = Math.min.apply(Math, xVals);
+		maxX = Math.max.apply(Math, xVals);
+		minY = Math.min.apply(Math, yVals);
+		maxY = Math.max.apply(Math, yVals);
+		var widthFactor = getCanvasWidth() / (maxX - minX + margin);
+		var heightFactor = getCanvasHeight() / (maxY - minY + margin);
+		if (heightFactor > widthFactor) {
+			newZoom = widthFactor;
+		} else {
+			newZoom = heightFactor;
+		}
+		if (newZoom > MAX_ZOOM) {
+			newZoom = MAX_ZOOM;
+		} else if (newZoom < MIN_ZOOM) {
+			newZoom = MIN_ZOOM;
+		}
+		newFocusZoom = newZoom;
+	}
+}
+
+function tourUpdate() {
+	focus = "none";
+	document.getElementById("purgeArrow").style.visibility = "hidden";
+	document.getElementById("lampArrow").style.visibility = "hidden";
+	document.getElementById("shutterArrow").style.visibility = "hidden";
+	document.getElementById("glassArrow").style.visibility = "hidden";
+	document.getElementById("sampleArrow").style.visibility = "hidden";
+	
+	if (tourStep >= 5) {
+		if (purgeStatus == "off") {
+			purgeStatus = "started";
+		} else {
+			purgeStatus = "on";
+		}
+		document.getElementById("purgeCheckbox").checked = true;
+		document.getElementById("lampCheckbox").removeAttribute("disabled");
+	} else {
+		purgeStatus = "off";
+		lampOn = false;
+		document.getElementById("purgeCheckbox").checked = false;
+		document.getElementById("lampCheckbox").setAttribute("disabled","disabled");
+	}
+	
+	if (tourStep >= 6) {
+		lampOn = true;
+		document.getElementById("lampCheckbox").checked = true;
+	} else {
+		lampOn = false;
+		document.getElementById("lampCheckbox").checked = false;
+	}
+	
+	if (tourStep >= 7) {
+		shutterStatus = "open";
+		document.getElementById("shutterCheckbox").checked = true;
+	} else {
+		shutterStatus = "closed";
+		document.getElementById("shutterCheckbox").checked = false;
+	}
+	
+	if (tourStep >= 14) {
+		magnifierOn = true;
+		document.getElementById("magnifierCheckbox").checked = true;
+	} else {
+		magnifierOn = false;
+		document.getElementById("magnifierCheckbox").checked = false;
+	}
+	
+	if (tourStep >= 24) {
+		sampleOn = true;
+		document.getElementById("sampleCheckbox").checked = true;
+		document.getElementById('graphcanvas_div').style.display = 'block';
+	} else {
+		sampleOn = false;
+		document.getElementById("sampleCheckbox").checked = false;
+		document.getElementById('graphcanvas_div').style.display = 'none';
+	}
+	
+	if (tourStep == 0) {
+		focus = "all";
+		focusZoom();
+		focusCamera();
+	} 
+	if (tourStep == 1) {
+		focus = "lamp";
+		focusZoom(["lamp"])
+		focusCamera(["lamp"]);
+	} 
+	if (tourStep == 2) {
+		focus = "oxygen";
+		focusZoom()
+		focusCamera();
+	} 
+	if (tourStep == 3) {
+		focus = "anms";
+		focusZoom()
+		focusCamera();
+	} 
+	if (tourStep == 4) {
+		focus = "none";
+		focusZoom()
+		focusCamera();
+		document.getElementById("purgeArrow").style.visibility = "visible";
+	}
+	if (tourStep == 5) {
+		focus = "none";
+		focusZoom()
+		focusCamera();
+		document.getElementById("lampArrow").style.visibility = "visible";
+	} 
+	if (tourStep == 6) {
+		focus = "shutter,focusingmirror";
+		focusZoom(["shutter","lampMirror"])
+		focusCamera(["shutter","lampMirror"]);
+		document.getElementById("shutterArrow").style.visibility = "visible";
+	}
+	if (tourStep == 7) {
+		focus = "slits,prisms,lenses,mirrors";
+		focusZoom(["prism1","prism2","slit1","slit2","slit3","mirror1","mirror2","mirror3","mirror4"])
+		focusCamera(["prism1","prism2","slit1","slit2","slit3","mirror1","mirror2","mirror3","mirror4"]);
+	}
+	if (tourStep == 8) {
+		focus = "prisms";
+		focusZoom(["prism1","prism2"])
+		focusCamera(["prism1","prism2"]);
+	}
+	if (tourStep == 9) {
+		focus = "prism1";
+		focusZoom(["prism1", "mirror1", "mirror2"])
+		focusCamera(["prism1", "mirror1", "mirror2"]);
+	}
+	if (tourStep == 10) {
+		focus = "slit2";
+		focusZoom(["slit2"])
+		focusCamera(["slit2"]);
+	}
+	if (tourStep == 11) {
+		focus = "baffles";
+		focusZoom(["baffles"])
+		focusCamera(["baffles"]);
+	}
+	if (tourStep == 12) {
+		focus = "none";
+		focusZoom(["prism1","prism2", "mirror1"])
+		focusCamera(["prism1","prism2", "mirror1"]);
+	}
+	if (tourStep == 13) {
+		focus = "none";
+		focusZoom(["prism1","prism2", "mirror1"])
+		focusCamera(["prism1","prism2", "mirror1"]);
+		document.getElementById("glassArrow").style.visibility = "visible";
+	}
+	if (tourStep == 14) {
+		focus = "none";
+		focusZoom(["prism1","prism2", "mirror1"])
+		focusCamera(["prism1","prism2", "mirror1"]);
+	}
+	if (tourStep == 15) {
+		focus = "none";
+		focusZoom(["prism1","prism2", "mirror1"])
+		focusCamera(["prism1","prism2", "mirror1"]);
+	}
+	if (tourStep == 16) {
+		focus = "none";
+		focusZoom(["prism2", "mirror3", "mirror4"])
+		focusCamera(["prism2", "mirror3", "mirror4"]);
+	}
+	if (tourStep == 17) {
+		focus = "none";
+		focusZoom(["slit3", "lens1", "lens2"])
+		focusCamera(["slit3", "lens1", "lens2"]);
+	}
+	if (tourStep == 18) {
+		focus = "none";
+		focusZoom(["pem"])
+		focusCamera(["pem"]);
+	}
+	if (tourStep == 19) {
+		focus = "pem";
+		focusZoom(["pem"])
+		focusCamera(["pem"]);
+	}
+	if (tourStep == 20) {
+		focus = "none";
+		focusZoom(["pem"])
+		focusCamera(["pem"]);
+	}
+	if (tourStep == 21) {
+		focus = "none";
+		focusZoom(["pem"])
+		focusCamera(["pem"]);
+	}
+	if (tourStep == 22) {
+		focus = "none";
+		focusZoom(["pem"])
+		focusCamera(["pem"]);
+	}
+	if (tourStep == 23) {
+		focus = "none";
+		focusZoom(["pem", "detector"])
+		focusCamera(["pem", "detector"]);
+		document.getElementById("sampleArrow").style.visibility = "visible";
+	}
+	if (tourStep == 24) {
+		focus = "none";
+		focusZoom(["pem", "detector"])
+		focusCamera(["pem", "detector"]);
+	}
+	if (tourStep == 25) {
+		focus = "none";
+		focusZoom(["pem", "detector"])
+		focusCamera(["pem", "detector"]);
+	}
+	if (tourStep == 26) {
+		focus = "none";
+		focusZoom(["pem", "detector"])
+		focusCamera(["pem", "detector"]);
+	}
+	if (tourStep == 27) {
+		focus = "detector";
+		focusZoom(["detectorcenter"])
+		focusCamera(["detectorcenter"]);
+	}
+	if (tourStep == 28) {
+		focus = "none";
+		focusZoom(["fluorescenceport"])
+		focusCamera(["fluorescenceport"]);
+	}
+	if (tourStep == 29) {
+		focus = "none";
+		focusZoom();
+		focusCamera();
+	}
+	if (tourStep >= 21) {
+		document.getElementById("animationControls_div").style.display = 'block';
+	} else {
+		document.getElementById("animationControls_div").style.display = 'none';
+	}
+	focussing = true;
+}
+
+function tourRestart() {
+	tourStep = 0;
+	tourText.innerHTML = tourTexts[0];
+	tourStepText.innerHTML = "0/" + String(tourTexts.length - 1);
+	document.getElementById("prevbutton").setAttribute("disabled","disabled");
+	document.getElementById("nextbutton").removeAttribute("disabled");
+	document.getElementById("restartbutton").setAttribute("disabled","disabled");
+	tourUpdate();
+}
+
+function tourPrev() {
+	if (tourStep > 0) {
+		tourStep -= 1;
+		tourText.innerHTML = tourTexts[tourStep];
+		tourStepText.innerHTML = String(tourStep) + "/" + String(tourTexts.length - 1);
+	}
+	
+	if (tourStep == 0) {
+		document.getElementById("restartbutton").setAttribute("disabled","disabled");
+		document.getElementById("prevbutton").setAttribute("disabled","disabled");
+		tourStepText.innerHTML = "";
+	} else {
+		document.getElementById("prevbutton").removeAttribute("disabled");
+	}
+	
+	if (tourStep < tourTexts.length - 1) {
+		document.getElementById("nextbutton").removeAttribute("disabled");
+	} else {
+		document.getElementById("nextbutton").setAttribute("disabled","disabled");
+	}
+	tourUpdate();
+	console.log("Prev clicked.");
+}
+
+function tourNext() {
+	if (tourStep < tourTexts.length - 1) {
+		tourStep += 1;
+		tourText.innerHTML = tourTexts[tourStep];
+		tourStepText.innerHTML = String(tourStep) + "/" + String(tourTexts.length - 1);
+	}
+	
+	if (tourStep == 0) {
+		document.getElementById("prevbutton").setAttribute("disabled","disabled");
+		tourStepText.innerHTML = "";
+	} else {
+		document.getElementById("restartbutton").removeAttribute("disabled");
+		document.getElementById("prevbutton").removeAttribute("disabled");
+	}
+	
+	if (tourStep < tourTexts.length - 1) {
+		document.getElementById("nextbutton").removeAttribute("disabled");
+	} else {
+		document.getElementById("nextbutton").setAttribute("disabled","disabled");
+	}
+	tourUpdate();
+	console.log("Next clicked.");
+}
+
+function tourReload() {
+	tourUpdate();
+	console.log("Reload clicked.");
+}
+</script>
+
+
+</body></html>
