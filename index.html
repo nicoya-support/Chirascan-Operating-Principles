@@ -5,6 +5,17 @@
 <title>Chirascan Operating Principles</title>
 
 <style>
+/*
+ * Nicoya Color Palette
+ * --------------------
+ * Dark Blue:  #212B38 (RGB: 33, 43, 56)   - Borders, active states
+ * Light Blue: #67CBDF (RGB: 103, 203, 223) - Primary buttons, accents, arrows
+ * Yellow:     #E9C259 (RGB: 233, 194, 89)  - Hover states
+ * Light Grey: #D9D9D9 (RGB: 217, 217, 217) - Borders, disabled states
+ * Dark Grey:  #3A3A3A (RGB: 58, 58, 58)    - Available if needed
+ * White:      #FFFFFF (RGB: 255, 255, 255) - Backgrounds, text
+ */
+
 html, body
 {
     height: 100%;
@@ -78,7 +89,7 @@ html, body
 {
 	font-size: 18pt;
 	font-family: Arial, Helvetica, sans-serif;
-	color: #9e247b;
+	color: #67CBDF;
 }
 
 .grid-item
@@ -95,13 +106,13 @@ html, body
 	font-size: 12px;
 	text-align: center;
 	text-decoration: none;
-	background-color: #9e247b;
+	background-color: #67CBDF;
 	color: white;
 	border: black;
 	border-radius: 5px;
 	border-style: solid;
 	border-width: 1px;
-	border-color:#333;
+	border-color:#212B38;
 	cursor: pointer;
 	width: 37px;
 	height: 28px;
@@ -110,21 +121,21 @@ html, body
 .button:hover
 {
 	color: white;
-	background-color: #d64dae;
+	background-color: #E9C259;
 }
 
 .button:active
 {
 	color: white;
-	background-color: #4f123d;
+	background-color: #212B38;
 }
 
 .button:disabled,
 button[disabled]
 {
 	cursor: auto;
-	border-color: #dedede;
-	background-color: #efefef;
+	border-color: #D9D9D9;
+	background-color: #D9D9D9;
 	color: white;
 }
 
@@ -144,14 +155,14 @@ input[type="range"]::-moz-range-thumb {
 	background: rgb(230, 230, 230);
 	background-color: #fff;
 	border-radius: 3px;
-	border: 1px solid #d9d9d9;
+	border: 1px solid #D9D9D9;
 	cursor: pointer;
 }
 
 input[type="range"]::-moz-range-track {
 	height: 10px;
 	background: #fafafa;
-	border: 1px solid #d3d3d3;
+	border: 1px solid #D9D9D9;
 	border-radius: 4px;
 }
 
@@ -164,7 +175,7 @@ input[type="range"]::-webkit-slider-thumb {
 	background: rgb(230, 230, 230);
 	background-color: #fff;
 	border-radius: 3px;
-	border: 1px solid #d9d9d9;
+	border: 1px solid #D9D9D9;
 	cursor: pointer;
 	margin: -5px;
 }
@@ -172,7 +183,7 @@ input[type="range"]::-webkit-slider-thumb {
 input[type="range"]::-webkit-slider-runnable-track {
 	height: 10px;
 	background: #fafafa;
-	border: 1px solid #d3d3d3;
+	border: 1px solid #D9D9D9;
 	border-radius: 4px;
 }
 
@@ -187,7 +198,7 @@ input[type="range"]::-webkit-slider-runnable-track {
 .checkbox {
 	transform: scale(1);
 	margin-top: 0px;
-	accent-color: #9e247b;
+	accent-color: #67CBDF;
 }
 
 .checkboxLabel {
@@ -262,7 +273,7 @@ input[type="range"]::-webkit-slider-runnable-track {
 		background: rgb(230, 230, 230);
 		background-color: #fff;
 		border-radius: 9px;
-		border: 1px solid #d9d9d9;
+		border: 1px solid #D9D9D9;
 		cursor: pointer;
 		margin: -15px;
 	}
@@ -270,7 +281,7 @@ input[type="range"]::-webkit-slider-runnable-track {
 	input[type="range"]::-webkit-slider-runnable-track {
 		height: 30px;
 		background: #fafafa;
-		border: 3px solid #d3d3d3;
+		border: 3px solid #D9D9D9;
 		border-radius: 12px;
 	}
     
@@ -2413,7 +2424,7 @@ function Shutter(posX, posY, radius) {
 			context = octx;
 		}
 		P = [this.posX, this.posY];
-		context.strokeStyle = "#9e247bff";
+		context.strokeStyle = "#67CBDFff";
 		context.lineWidth = 8;
 		// Upper part
 		context.beginPath();
