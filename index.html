@@ -16,18 +16,17 @@
  * White:      #FFFFFF (RGB: 255, 255, 255) - Backgrounds, text
  */
 
-html, body
-{
-
+html, body {
     margin: 0;
-    padding: 0px;
-
+    padding: 0;
+    min-height: 100%;  /* was: height: 100% */
+    /* remove overflow: hidden entirely */
 }
 
-#wrapper{
-    position:relative;
-    width:100%;
-    height:100%;
+#wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;  /* was implicit via height: 100% */
 }
 
 #controlscontainer{
