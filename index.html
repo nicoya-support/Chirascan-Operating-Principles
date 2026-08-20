@@ -92,10 +92,10 @@ html, body
 	color: #67CBDF;
 }
 
-.grid-item
-{
+.grid-item {
 	padding: 10px;
 	text-align: left;
+	min-height: 0; /* NEW: allow grid item to shrink so overflow-y:auto works */
 }
 
 .button
@@ -228,12 +228,12 @@ input[type="range"]::-webkit-slider-runnable-track {
     height:100%;
 }
 
-#tourcontainer
-{
+#tourcontainer {
 	display: grid;
 	grid-template-columns: 10% 80%;
 	gap: 10%;
 	width: 90%;
+	min-height: 0; /* NEW */
 }
 
 /* Tablets (Portrait) and Smaller */
@@ -328,17 +328,19 @@ input[type="range"]::-webkit-slider-runnable-track {
 		max-height: 25vh; /* Limit height to avoid excessive stretching */
 	}
 	
-	#buttoncontainer {
-		width: auto;
-	}
-	
-	#textcontainer
-	{
-		font-size: 30pt;
-		line-height: 1.5;
-		overflow-y: auto; /* Enable vertical scrolling */
-		max-height: 25vh; /* Limit height to avoid excessive stretching */
-	}
+	#buttoncontainer,
+#textcontainer {
+	min-height: 0; /* NEW */
+}
+
+#textcontainer {
+	font-size: 10pt;
+	font-family: Arial, Helvetica, sans-serif;
+	margin-top: -5px;
+	line-height: 1.5;
+	height: 100%;      /* NEW: give it a concrete box to scroll within */
+	overflow-y: auto;
+}
 }
 
 
@@ -412,6 +414,7 @@ input[type="range"]::-webkit-slider-runnable-track {
 }
 
 </style>
+	<script src="https://cdn.jsdelivr.net/npm/iframe-resizer@4.3.9/js/iframeResizer.contentWindow.min.js"></script>
 
 </head>
 <body>
