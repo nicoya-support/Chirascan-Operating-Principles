@@ -15,6 +15,7 @@ html, body {
     margin: 0;
     padding: 0;
     min-height: 100%;
+    overflow-x: hidden;
     background: #fff;
 }
 
@@ -32,8 +33,10 @@ html, body {
     grid-template-areas: "canvas info tour";
     gap: 10px;
     width: 100%;
+    max-width: 100%;
     box-sizing: border-box;
     padding: 10px;
+    overflow-x: hidden;
 }
 
 .grid-item {
@@ -59,9 +62,7 @@ html, body {
 
 #tourcontainer {
     grid-area: tour;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 12px;
+    display: block;
     min-width: 0;
 }
 
@@ -108,8 +109,15 @@ html, body {
     margin-bottom: 10px;
 }
 
+#controlscontainer > div:not(.slidercontainer):not(#animationControls_div) {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
 #buttoncontainer {
-    text-align: center;
+    text-align: left;
+    margin-bottom: 10px;
 }
 
 #textcontainer {
@@ -123,6 +131,7 @@ html, body {
     font-size: 18pt;
     font-family: Arial, Helvetica, sans-serif;
     color: #67CBDF;
+    line-height: 1;
 }
 
 .button {
@@ -220,7 +229,9 @@ input[type="range"]::-moz-range-track {
 
     #canvascontainer {
         width: 100%;
-        aspect-ratio: 937 / 740;
+        aspect-ratio: auto;
+        height: 50vh;
+        max-height: 500px;
         min-height: 280px;
         margin: 0 auto;
     }
@@ -229,17 +240,10 @@ input[type="range"]::-moz-range-track {
     #tourcontainer {
         width: 100%;
         margin: 0 auto;
-		display: block;
     }
-	#buttoncontainer {
-    text-align: left;       /* keep buttons left-aligned with the text */
-    margin-bottom: 10px;
-}
 }
 
 /* ---------- High-DPI (physical touchscreens, kiosks) ---------- */
-/* Only apply the big-controls treatment when there is width for it,
-   so mobile retina/embedded iframes on hi-DPI monitors keep normal sizing. */
 
 @media screen and (min-resolution: 192dpi) and (min-width: 1400px) {
     input[type="range"]::-webkit-slider-thumb {
